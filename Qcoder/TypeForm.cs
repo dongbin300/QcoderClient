@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Qcoder
 {
-    public partial class Form1 : Form
+    public partial class TypeForm : Form
     {
-        public Form1()
+        public TypeForm()
         {
             InitializeComponent();
         }
