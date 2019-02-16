@@ -90,6 +90,7 @@
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
             this.Text = "로그인";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

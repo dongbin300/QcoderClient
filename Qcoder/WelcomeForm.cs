@@ -31,10 +31,10 @@ namespace Qcoder
             server.ReadJSON(loginString);
             //isLogin = true;
 
-            Close();
+            Visible = false;
             MainForm mainForm = new MainForm();
             mainForm.nickname = nickname;
-            mainForm.Show();
+            mainForm.ShowDialog();
         }
     }
 }
