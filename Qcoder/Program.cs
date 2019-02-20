@@ -11,12 +11,37 @@ namespace Qcoder
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        
+        public static int FormNumber = 1;
+        public static string id;
+        public static string password;
+        public static string nickname;
+        public static string jsonString;
+
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
+            while (true)
+            {
+                if(FormNumber == -1)
+                {
+                    break;
+                }
+                switch(FormNumber)
+                {
+                    case 1:
+                        Application.Run(new LoginForm());
+                        break;
+                    case 2:
+                        Application.Run(new WelcomeForm(id, password));
+                        break;
+                    case 3:
+                        Application.Run(new MainForm(nickname, jsonString));
+                        break;
+                }
+            }
         }
     }
 }

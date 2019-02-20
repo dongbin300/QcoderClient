@@ -15,9 +15,11 @@ namespace Qcoder
         public string id;
         public string password;
 
-        public WelcomeForm()
+        public WelcomeForm(string id, string password)
         {
             InitializeComponent();
+            this.id = id;
+            this.password = password;
         }
 
         private void registButton_Click(object sender, EventArgs e)
@@ -31,10 +33,14 @@ namespace Qcoder
             server.ReadJSON(loginString);
             //isLogin = true;
 
-            Visible = false;
-            MainForm mainForm = new MainForm();
-            mainForm.nickname = nickname;
-            mainForm.ShowDialog();
+            Close();
+            Program.FormNumber = 3;
+            Program.nickname = nickname;
+        }
+
+        private void WelcomeForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.FormNumber = -1;
         }
     }
 }

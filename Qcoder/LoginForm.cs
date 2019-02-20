@@ -34,11 +34,10 @@ namespace Qcoder
             /* 아이디가 존재하지 않은 경우 -> 생성 */
             if (server.errorCode == "103")
             {
-                Visible = false;
-                WelcomeForm welcomeForm = new WelcomeForm();
-                welcomeForm.id = id;
-                welcomeForm.password = password;
-                welcomeForm.ShowDialog();
+                Close();
+                Program.FormNumber = 2;
+                Program.id = id;
+                Program.password = password;
             }
             /* 아이디만 일치하는 경우 */
             else if (server.errorCode == "104")
@@ -66,17 +65,16 @@ namespace Qcoder
                 MessageBox.Show("확인되었습니다.");
                 //isLogin = true;
 
-                Visible = false;
-                MainForm mainForm = new MainForm();
-                mainForm.nickname = server.userNick;
-                mainForm.jsonString = loginString;
-                mainForm.ShowDialog();
+                Close();
+                Program.FormNumber = 3;
+                Program.nickname = server.userNick;
+                Program.jsonString = loginString;
             }
         }
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Close();
+            Program.FormNumber = -1;
         }
     }
 }

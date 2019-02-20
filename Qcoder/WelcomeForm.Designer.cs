@@ -69,6 +69,7 @@
             this.Controls.Add(this.label1);
             this.Name = "WelcomeForm";
             this.Text = "가입";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WelcomeForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
