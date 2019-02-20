@@ -45,17 +45,47 @@ namespace Qcoder
             StreamReader reader = new StreamReader(dataStream);
             string responseFromServer = reader.ReadToEnd();
             reader.Close();
+            dataStream.Close();
             response.Close();
             return responseFromServer;
         }
 
-        public string GetRequestHeader(string url, string header, string value)
+        public string GetRequest(string url, string getData)
+        {
+            WebRequest request = WebRequest.Create($"{url}?{getData}");
+            request.Method = "GET";
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
+        }
+
+        public string GetRequest(string url, string header, string value)
         {
             WebRequest request = WebRequest.Create(url);
             request.Method = "GET";
             request.Headers[header] = value;
             WebResponse response = request.GetResponse();
-            var dataStream = response.GetResponseStream();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
+        }
+
+        public string GetRequest(string url, string header, string value, string getData)
+        {
+            WebRequest request = WebRequest.Create($"{url}?{getData}");
+            request.Method = "GET";
+            request.Headers[header] = value;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(dataStream);
             string responseFromServer = reader.ReadToEnd();
             reader.Close();
@@ -84,6 +114,27 @@ namespace Qcoder
             return responseFromServer;
         }
 
+        public string PostRequest(string url, string header, string value, string postData)
+        {
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "POST";
+            request.Headers[header] = value;
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+            request.ContentType = "application/x-www-form-urlencoded";
+            request.ContentLength = byteArray.Length;
+            Stream dataStream = request.GetRequestStream();
+            dataStream.Write(byteArray, 0, byteArray.Length);
+            dataStream.Close();
+            WebResponse response = request.GetResponse();
+            dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
+        }
+
         public string Regist(string id, string password, string nickname)
         {
             string url = "https://devworld.net/qcoder/api/register.jsp";
@@ -91,9 +142,11 @@ namespace Qcoder
             return PostRequest(url, postData);
         }
 
-        public string Unregist(string accessToken, string id, string password)
+        public string Unregist(string accessToken, string id, string reason)
         {
-            return "";
+            string url = "https://devworld.net/qcoder/api/unregister.jsp";
+            string postData = $"user_id={id}&reason={reason}";
+            return PostRequest(url, "X-Access-Token", accessToken, postData);
         }
 
         public string Login(string id, string password)
@@ -106,7 +159,7 @@ namespace Qcoder
         public string Logout(string accessToken)
         {
             string url = "https://devworld.net/qcoder/api/logout.jsp";
-            return GetRequestHeader(url, "X-Access-Token", accessToken);
+            return GetRequest(url, "X-Access-Token", accessToken);
         }
 
         public string ReissueToken(string accessToken, string refreshToken)
@@ -118,7 +171,8 @@ namespace Qcoder
         public string RequestDataList(string accessToken, string type)
         {
             string url = "https://devworld.net/qcoder/api/getDataList.jsp";
-            return GetRequest(url);
+            string getData = $"type={type}";
+            return GetRequest(url, "X-Access-Token", accessToken, getData);
         }
 
         public string TryToHackNaver()

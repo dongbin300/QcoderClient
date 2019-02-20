@@ -35,7 +35,7 @@ namespace Qcoder
             if (server.errorCode == "103")
             {
                 Close();
-                Program.FormNumber = 2;
+                Program.Form = Program.Forms.Welcome;
                 Program.id = id;
                 Program.password = password;
             }
@@ -64,7 +64,7 @@ namespace Qcoder
             {
                 MessageBox.Show("확인되었습니다.");
                 Close();
-                Program.FormNumber = 3;
+                Program.Form = Program.Forms.Main;
                 Program.nickname = server.userNick;
                 Program.jsonString = loginString;
             }
@@ -72,7 +72,7 @@ namespace Qcoder
 
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.FormNumber = -1;
+            Program.Form = Program.Forms.Exit;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -86,7 +86,7 @@ namespace Qcoder
             server.ReadJSON(loginString);
 
             Close();
-            Program.FormNumber = 3;
+            Program.Form = Program.Forms.Main;
             Program.nickname = server.userNick;
             Program.jsonString = loginString;
         }

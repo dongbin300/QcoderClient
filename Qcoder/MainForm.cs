@@ -34,7 +34,7 @@ namespace Qcoder
             Server server = Server.GetInstance();
             server.Logout(server.accessToken);
 
-            Program.FormNumber = -1;
+            Program.Form = Program.Forms.Exit;
         }
 
         private void logoutButton_Click(object sender, EventArgs e)
@@ -44,7 +44,7 @@ namespace Qcoder
             server.Logout(server.accessToken);
 
             Close();
-            Program.FormNumber = 1;
+            Program.Form = Program.Forms.Login;
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -64,13 +64,26 @@ namespace Qcoder
         private void wordButton_Click(object sender, EventArgs e)
         {
             Close();
-            Program.FormNumber = 4;
+            Program.Form = Program.Forms.Type;
         }
 
         private void gameButton_Click(object sender, EventArgs e)
         {
             Close();
-            Program.FormNumber = 5;
+            Program.Form = Program.Forms.Game;
+        }
+
+        private void dataListButton_Click(object sender, EventArgs e)
+        {
+            Server server = Server.GetInstance();
+            string requestDataListString = server.RequestDataList(server.accessToken, "word");
+            jsonLabel.Text = requestDataListString;
+        }
+
+        private void unregistButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.Form = Program.Forms.Unregist;
         }
     }
 }

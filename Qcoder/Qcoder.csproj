@@ -79,6 +79,12 @@
     <Compile Include="TypeForm.Designer.cs">
       <DependentUpon>TypeForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnregistForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UnregistForm.Designer.cs">
+      <DependentUpon>UnregistForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +111,9 @@
     </Compile>
     <EmbeddedResource Include="TypeForm.resx">
       <DependentUpon>TypeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UnregistForm.resx">
+      <DependentUpon>UnregistForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>

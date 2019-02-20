@@ -11,8 +11,9 @@ namespace Qcoder
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        
-        public static int FormNumber = 1;
+
+        public enum Forms { Exit, Login, Welcome, Main, Type, Game, Unregist };
+        public static Forms Form = Forms.Login;
         public static string id;
         public static string password;
         public static string nickname;
@@ -25,26 +26,29 @@ namespace Qcoder
             Application.SetCompatibleTextRenderingDefault(false);
             while (true)
             {
-                if(FormNumber == -1)
+                if(Form == Forms.Exit)
                 {
                     break;
                 }
-                switch(FormNumber)
+                switch(Form)
                 {
-                    case 1:
+                    case Forms.Login:
                         Application.Run(new LoginForm());
                         break;
-                    case 2:
+                    case Forms.Welcome:
                         Application.Run(new WelcomeForm(id, password));
                         break;
-                    case 3:
+                    case Forms.Main:
                         Application.Run(new MainForm(nickname, jsonString));
                         break;
-                    case 4:
+                    case Forms.Type:
                         Application.Run(new TypeForm());
                         break;
-                    case 5:
+                    case Forms.Game:
                         Application.Run(new GameForm());
+                        break;
+                    case Forms.Unregist:
+                        Application.Run(new UnregistForm());
                         break;
                 }
             }

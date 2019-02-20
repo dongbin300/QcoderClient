@@ -33,13 +33,13 @@ namespace Qcoder
             server.ReadJSON(loginString);
 
             Close();
-            Program.FormNumber = 3;
+            Program.Form = Program.Forms.Main;
             Program.nickname = nickname;
         }
 
         private void WelcomeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.FormNumber = -1;
+            Program.Form = Program.Forms.Exit;
         }
     }
 }

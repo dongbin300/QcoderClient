@@ -52,7 +52,7 @@ namespace Qcoder
             Server server = Server.GetInstance();
             server.Logout(server.accessToken);
 
-            Program.FormNumber = -1;
+            Program.Form = Program.Forms.Exit;
         }
 
         private void answerTextBox_TextChanged(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace Qcoder
                 string resultMessage = $"{server.userNick} 님\n\n진행한 시간: {string.Format("{0}", (int)elapsedTime)}초\n타자 속도: {typeSpeed}t/s\n점수: {score}";
                 MessageBox.Show(resultMessage, "타자연습(게임)");
                 Close();
-                Program.FormNumber = 3;
+                Program.Form = Program.Forms.Main;
             }
         }
 
