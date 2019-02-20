@@ -58,12 +58,6 @@
     <Compile Include="GameForm.Designer.cs">
       <DependentUpon>GameForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameResultForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GameResultForm.Designer.cs">
-      <DependentUpon>GameResultForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,12 +79,6 @@
     <Compile Include="TypeForm.Designer.cs">
       <DependentUpon>TypeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TypeResultForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TypeResultForm.Designer.cs">
-      <DependentUpon>TypeResultForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="WelcomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,9 +87,6 @@
     </Compile>
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GameResultForm.resx">
-      <DependentUpon>GameResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -120,9 +105,6 @@
     </Compile>
     <EmbeddedResource Include="TypeForm.resx">
       <DependentUpon>TypeForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TypeResultForm.resx">
-      <DependentUpon>TypeResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WelcomeForm.resx">
       <DependentUpon>WelcomeForm.cs</DependentUpon>

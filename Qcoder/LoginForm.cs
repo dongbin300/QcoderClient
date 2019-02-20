@@ -63,8 +63,6 @@ namespace Qcoder
             else
             {
                 MessageBox.Show("확인되었습니다.");
-                //isLogin = true;
-
                 Close();
                 Program.FormNumber = 3;
                 Program.nickname = server.userNick;
@@ -75,6 +73,22 @@ namespace Qcoder
         private void LoginForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.FormNumber = -1;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Server server = Server.GetInstance();
+            string id = "testman";
+            string password = "1q2w3e4r!";
+
+            /* 서버에 로그인 요청 */
+            string loginString = server.Login(id, password);
+            server.ReadJSON(loginString);
+
+            Close();
+            Program.FormNumber = 3;
+            Program.nickname = server.userNick;
+            Program.jsonString = loginString;
         }
     }
 }

@@ -31,7 +31,6 @@ namespace Qcoder
             server.Regist(id, password, nickname);
             string loginString = server.Login(id, password);
             server.ReadJSON(loginString);
-            //isLogin = true;
 
             Close();
             Program.FormNumber = 3;

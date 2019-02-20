@@ -40,6 +40,12 @@ namespace Qcoder
                     case 3:
                         Application.Run(new MainForm(nickname, jsonString));
                         break;
+                    case 4:
+                        Application.Run(new TypeForm());
+                        break;
+                    case 5:
+                        Application.Run(new GameForm());
+                        break;
                 }
             }
         }

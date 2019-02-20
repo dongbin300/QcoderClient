@@ -42,9 +42,9 @@
             this.nicknameLabel.AutoSize = true;
             this.nicknameLabel.Location = new System.Drawing.Point(22, 17);
             this.nicknameLabel.Name = "nicknameLabel";
-            this.nicknameLabel.Size = new System.Drawing.Size(35, 12);
+            this.nicknameLabel.Size = new System.Drawing.Size(55, 12);
             this.nicknameLabel.TabIndex = 0;
-            this.nicknameLabel.Text = "_____";
+            this.nicknameLabel.Text = "userNick";
             // 
             // wordButton
             // 
@@ -54,13 +54,14 @@
             this.wordButton.TabIndex = 1;
             this.wordButton.Text = "단어";
             this.wordButton.UseVisualStyleBackColor = true;
+            this.wordButton.Click += new System.EventHandler(this.wordButton_Click);
             // 
             // sentenceButton
             // 
             this.sentenceButton.Location = new System.Drawing.Point(83, 51);
             this.sentenceButton.Name = "sentenceButton";
             this.sentenceButton.Size = new System.Drawing.Size(64, 64);
-            this.sentenceButton.TabIndex = 1;
+            this.sentenceButton.TabIndex = 2;
             this.sentenceButton.Text = "짧은글";
             this.sentenceButton.UseVisualStyleBackColor = true;
             // 
@@ -69,7 +70,7 @@
             this.articleButton.Location = new System.Drawing.Point(153, 51);
             this.articleButton.Name = "articleButton";
             this.articleButton.Size = new System.Drawing.Size(64, 64);
-            this.articleButton.TabIndex = 1;
+            this.articleButton.TabIndex = 3;
             this.articleButton.Text = "긴글";
             this.articleButton.UseVisualStyleBackColor = true;
             // 
@@ -78,16 +79,17 @@
             this.gameButton.Location = new System.Drawing.Point(223, 51);
             this.gameButton.Name = "gameButton";
             this.gameButton.Size = new System.Drawing.Size(64, 64);
-            this.gameButton.TabIndex = 1;
+            this.gameButton.TabIndex = 4;
             this.gameButton.Text = "게임";
             this.gameButton.UseVisualStyleBackColor = true;
+            this.gameButton.Click += new System.EventHandler(this.gameButton_Click);
             // 
             // logoutButton
             // 
             this.logoutButton.Location = new System.Drawing.Point(223, 12);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(64, 22);
-            this.logoutButton.TabIndex = 1;
+            this.logoutButton.TabIndex = 5;
             this.logoutButton.Text = "로그아웃";
             this.logoutButton.UseVisualStyleBackColor = true;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
@@ -97,9 +99,9 @@
             this.jsonLabel.AutoSize = true;
             this.jsonLabel.Location = new System.Drawing.Point(13, 122);
             this.jsonLabel.Name = "jsonLabel";
-            this.jsonLabel.Size = new System.Drawing.Size(38, 12);
+            this.jsonLabel.Size = new System.Drawing.Size(61, 12);
             this.jsonLabel.TabIndex = 2;
-            this.jsonLabel.Text = "label1";
+            this.jsonLabel.Text = "jsonString";
             // 
             // MainForm
             // 
@@ -113,10 +115,12 @@
             this.Controls.Add(this.sentenceButton);
             this.Controls.Add(this.wordButton);
             this.Controls.Add(this.nicknameLabel);
+            this.KeyPreview = true;
             this.Name = "MainForm";
             this.Text = "메인";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

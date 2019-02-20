@@ -46,5 +46,31 @@ namespace Qcoder
             Close();
             Program.FormNumber = 1;
         }
+
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F1:
+                    MessageBox.Show("단어: 한 단어를 연습합니다.\n" +
+                                "짧은글: 짧은 글을 연습합니다.\n" +
+                                "긴글: 긴 글을 연습합니다.\n" +
+                                "게임: 게임을 플레이합니다.\n" +
+                                "로그아웃: 로그아웃을 합니다.", "메뉴 도움말");
+                    break;
+            }
+        }
+
+        private void wordButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.FormNumber = 4;
+        }
+
+        private void gameButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.FormNumber = 5;
+        }
     }
 }
