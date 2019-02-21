@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace Qcoder
 {
@@ -19,18 +20,28 @@ namespace Qcoder
         public static string nickname;
         public static string jsonString;
 
+        private static System.Timers.Timer reissueTokenTimer;
+
         [STAThread]
         static void Main()
         {
+            reissueTokenTimer = new System.Timers.Timer();
+            reissueTokenTimer.Elapsed += new ElapsedEventHandler(reissueTokenTimer_Elapsed);
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             while (true)
             {
-                if(Form == Forms.Exit)
+                if (Form == Forms.Exit)
                 {
+                    Server server = Server.GetInstance();
+                    if (server.accessToken != null)
+                    {
+                        server.Logout(server.accessToken);
+                    }
                     break;
                 }
-                switch(Form)
+                switch (Form)
                 {
                     case Forms.Login:
                         Application.Run(new LoginForm());
@@ -39,6 +50,15 @@ namespace Qcoder
                         Application.Run(new WelcomeForm(id, password));
                         break;
                     case Forms.Main:
+                        if (reissueTokenTimer.Enabled == false)
+                        {
+                            Server server = Server.GetInstance();
+                            DateTime expDate = DateTime.ParseExact(server.atExpirationDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                            DateTime updDate = DateTime.ParseExact(server.updDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                            TimeSpan diff = expDate - updDate;
+                            reissueTokenTimer.Interval = (diff.Days * 86400 + diff.Hours * 3600 + diff.Minutes * 60 + diff.Seconds) * 1000;
+                            reissueTokenTimer.Start();
+                        }
                         Application.Run(new MainForm(nickname, jsonString));
                         break;
                     case Forms.Type:
@@ -52,6 +72,12 @@ namespace Qcoder
                         break;
                 }
             }
+        }
+
+        static void reissueTokenTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            Server server = Server.GetInstance();
+            server.ReissueToken(server.accessToken, server.refreshToken);
         }
     }
 }

@@ -20,6 +20,7 @@ namespace Qcoder
         public string connState;
         public JObject account;
         public string regDate;
+        public string atExpirationDate;
         public string userID;
         public string state;
         public string userNick;
@@ -84,6 +85,22 @@ namespace Qcoder
             WebRequest request = WebRequest.Create($"{url}?{getData}");
             request.Method = "GET";
             request.Headers[header] = value;
+            WebResponse response = request.GetResponse();
+            Stream dataStream = response.GetResponseStream();
+            StreamReader reader = new StreamReader(dataStream);
+            string responseFromServer = reader.ReadToEnd();
+            reader.Close();
+            dataStream.Close();
+            response.Close();
+            return responseFromServer;
+        }
+
+        public string GetRequest(string url, string header, string value, string header2, string value2)
+        {
+            WebRequest request = WebRequest.Create(url);
+            request.Method = "GET";
+            request.Headers[header] = value;
+            request.Headers[header2] = value2;
             WebResponse response = request.GetResponse();
             Stream dataStream = response.GetResponseStream();
             StreamReader reader = new StreamReader(dataStream);
@@ -165,7 +182,7 @@ namespace Qcoder
         public string ReissueToken(string accessToken, string refreshToken)
         {
             string url = "https://devworld.net/qcoder/api/getNewAccessToken.jsp";
-            return GetRequest(url);
+            return GetRequest(url, "X-Access-Token", accessToken, "X-Refresh-Token", refreshToken);
         }
 
         public string RequestDataList(string accessToken, string type)
@@ -191,6 +208,7 @@ namespace Qcoder
                 accessToken = (string)connection["access_token"];
                 userIP = (string)connection["user_ip"];
                 refreshToken = (string)connection["refresh_token"];
+                atExpirationDate = (string)connection["at_expiration_date"];
                 updDate = (string)connection["upd_date"];
                 connState = (string)connection["conn_state"];
                 account = (JObject)data["account"];

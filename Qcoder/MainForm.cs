@@ -30,10 +30,6 @@ namespace Qcoder
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            /* 로그아웃 */
-            Server server = Server.GetInstance();
-            server.Logout(server.accessToken);
-
             Program.Form = Program.Forms.Exit;
         }
 
