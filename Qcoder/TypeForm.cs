@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Qcoder
 {
@@ -24,6 +25,10 @@ namespace Qcoder
         private int typeSpeed;
         private int score;
         private string language;
+
+        SoundPlayer hitSound;
+        SoundPlayer correctSound;
+        SoundPlayer incorrectSound;
 
         public TypeForm(string language)
         {
@@ -48,16 +53,19 @@ namespace Qcoder
             {
                 if (example == answer)
                 {
+                    correctSound.Play();
+
                     progressWord++;
                     completionWord++;
                     score += example.Length * 10;
 
                     NewExample();
-                    
                     answerTextBox.Clear();
                 }
                 else
                 {
+                    incorrectSound.Play();
+
                     progressWord++;
 
                     NewExample();
@@ -67,8 +75,18 @@ namespace Qcoder
             }
         }
 
+        private void hitSoundPlay()
+        {
+            hitSound.Play();
+        }
+
         private void TypeForm_Load(object sender, EventArgs e)
         {
+            /* 사운드 설정 */
+            hitSound = new SoundPlayer(@"keyboard.wav");
+            correctSound = new SoundPlayer(@"correct.wav");
+            incorrectSound = new SoundPlayer(@"incorrect.wav");
+
             /* 설정 초기화 */
             elapsedTime = 0;
             progressWord = 0;
