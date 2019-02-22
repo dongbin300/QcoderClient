@@ -37,6 +37,7 @@
             this.typeSpeedLabel = new System.Windows.Forms.Label();
             this.elapsedTimeLabel = new System.Windows.Forms.Label();
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
+            this.languageTypeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // exampleLabel
@@ -107,11 +108,22 @@
             // 
             this.mainTimer.Tick += new System.EventHandler(this.mainTimer_Tick);
             // 
+            // languageTypeLabel
+            // 
+            this.languageTypeLabel.AutoSize = true;
+            this.languageTypeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.languageTypeLabel.Location = new System.Drawing.Point(14, 81);
+            this.languageTypeLabel.Name = "languageTypeLabel";
+            this.languageTypeLabel.Size = new System.Drawing.Size(113, 13);
+            this.languageTypeLabel.TabIndex = 7;
+            this.languageTypeLabel.Text = "_language_type_";
+            // 
             // TypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(324, 102);
+            this.Controls.Add(this.languageTypeLabel);
             this.Controls.Add(this.elapsedTimeLabel);
             this.Controls.Add(this.typeSpeedLabel);
             this.Controls.Add(this.accuracyLabel);
@@ -140,5 +152,6 @@
         private System.Windows.Forms.Label typeSpeedLabel;
         private System.Windows.Forms.Label elapsedTimeLabel;
         private System.Windows.Forms.Timer mainTimer;
+        private System.Windows.Forms.Label languageTypeLabel;
     }
 }

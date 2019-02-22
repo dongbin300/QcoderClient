@@ -35,6 +35,7 @@
             this.scoreLabel = new System.Windows.Forms.Label();
             this.elapsedTimeLabel = new System.Windows.Forms.Label();
             this.typeSpeedLabel = new System.Windows.Forms.Label();
+            this.languageTypeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // answerTextBox
@@ -87,11 +88,22 @@
             this.typeSpeedLabel.TabIndex = 8;
             this.typeSpeedLabel.Text = "0000 t/s";
             // 
+            // languageTypeLabel
+            // 
+            this.languageTypeLabel.AutoSize = true;
+            this.languageTypeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.languageTypeLabel.Location = new System.Drawing.Point(12, 481);
+            this.languageTypeLabel.Name = "languageTypeLabel";
+            this.languageTypeLabel.Size = new System.Drawing.Size(113, 13);
+            this.languageTypeLabel.TabIndex = 9;
+            this.languageTypeLabel.Text = "_language_type_";
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 502);
+            this.Controls.Add(this.languageTypeLabel);
             this.Controls.Add(this.typeSpeedLabel);
             this.Controls.Add(this.elapsedTimeLabel);
             this.Controls.Add(this.scoreLabel);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label elapsedTimeLabel;
         private System.Windows.Forms.Label typeSpeedLabel;
+        private System.Windows.Forms.Label languageTypeLabel;
     }
 }

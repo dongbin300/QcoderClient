@@ -20,13 +20,20 @@ namespace Qcoder
         public string connState;
         public JObject account;
         public string regDate;
-        public string atExpirationDate;
+        public string expDate;
         public string userID;
         public string state;
         public string userNick;
         public bool success;
         public int rspCode;
         public string errorCode;
+
+        public JArray list;
+        public JObject thing;
+        public string[] language;
+        public string[] type;
+        public string[] content;
+
 
         private static Server instance = new Server();
 
@@ -197,7 +204,7 @@ namespace Qcoder
             return GetRequest("https://www.naver.com");
         }
 
-        public void ReadJSON(string JSONstring)
+        public void AccountJSON(string JSONstring)
         {
             jo = JObject.Parse(JSONstring);
             errorMessage = (string)jo["error_msg"];
@@ -208,7 +215,7 @@ namespace Qcoder
                 accessToken = (string)connection["access_token"];
                 userIP = (string)connection["user_ip"];
                 refreshToken = (string)connection["refresh_token"];
-                atExpirationDate = (string)connection["at_expiration_date"];
+                expDate = (string)connection["at_expiration_date"];
                 updDate = (string)connection["upd_date"];
                 connState = (string)connection["conn_state"];
                 account = (JObject)data["account"];
@@ -216,6 +223,34 @@ namespace Qcoder
                 userID = (string)account["user_id"];
                 state = (string)account["state"];
                 userNick = (string)account["user_nick"];
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+            success = (bool)jo["success"];
+            rspCode = (int)jo["rsp_code"];
+            errorCode = (string)jo["error_code"];
+        }
+
+        public void WordJSON(string JSONstring)
+        {
+            jo = JObject.Parse(JSONstring);
+            errorMessage = (string)jo["error_msg"];
+            data = (JObject)jo["data"];
+            try
+            {
+                list = (JArray)data["list"];
+                language = new string[list.Count];
+                type = new string[list.Count];
+                content = new string[list.Count];
+                for (int i = 0; i < list.Count; i++)
+                {
+                    thing = (JObject)list[i];
+                    language[i] = (string)thing["language"];
+                    type[i] = (string)thing["type"];
+                    content[i] = (string)thing["content"];
+                }
             }
             catch (NullReferenceException)
             {

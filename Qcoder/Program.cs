@@ -18,6 +18,7 @@ namespace Qcoder
         public static string id;
         public static string password;
         public static string nickname;
+        public static string language;
         public static string jsonString;
 
         private static System.Timers.Timer reissueTokenTimer;
@@ -27,7 +28,7 @@ namespace Qcoder
         {
             reissueTokenTimer = new System.Timers.Timer();
             reissueTokenTimer.Elapsed += new ElapsedEventHandler(reissueTokenTimer_Elapsed);
-            
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             while (true)
@@ -50,22 +51,22 @@ namespace Qcoder
                         Application.Run(new WelcomeForm(id, password));
                         break;
                     case Forms.Main:
-                        if (reissueTokenTimer.Enabled == false)
+                        if (!reissueTokenTimer.Enabled)
                         {
                             Server server = Server.GetInstance();
-                            DateTime expDate = DateTime.ParseExact(server.atExpirationDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                            DateTime expDate = DateTime.ParseExact(server.expDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
                             DateTime updDate = DateTime.ParseExact(server.updDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                            TimeSpan diff = expDate - updDate;
+                            TimeSpan diff = expDate - updDate - new TimeSpan(0, 5, 0);
                             reissueTokenTimer.Interval = (diff.Days * 86400 + diff.Hours * 3600 + diff.Minutes * 60 + diff.Seconds) * 1000;
                             reissueTokenTimer.Start();
                         }
-                        Application.Run(new MainForm(nickname, jsonString));
+                        Application.Run(new MainForm(nickname));
                         break;
                     case Forms.Type:
-                        Application.Run(new TypeForm());
+                        Application.Run(new TypeForm(language));
                         break;
                     case Forms.Game:
-                        Application.Run(new GameForm());
+                        Application.Run(new GameForm(language));
                         break;
                     case Forms.Unregist:
                         Application.Run(new UnregistForm());

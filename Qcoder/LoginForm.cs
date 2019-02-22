@@ -29,7 +29,7 @@ namespace Qcoder
 
             /* 서버에 로그인 요청 */
             string loginString = server.Login(id, password);
-            server.ReadJSON(loginString);
+            server.AccountJSON(loginString);
 
             /* 아이디가 존재하지 않은 경우 -> 생성 */
             if (server.errorCode == "103")
@@ -90,7 +90,7 @@ namespace Qcoder
 
             /* 서버에 로그인 요청 */
             string loginString = server.Login(id, password);
-            server.ReadJSON(loginString);
+            server.AccountJSON(loginString);
 
             Close();
             Program.Form = Program.Forms.Main;

@@ -13,19 +13,30 @@ namespace Qcoder
     public partial class MainForm : Form
     {
         public string nickname { get; set; }
-        public string jsonString { get; set; }
 
-        public MainForm(string nickname, string jsonString)
+        public MainForm(string nickname)
         {
             InitializeComponent();
             this.nickname = nickname;
-            this.jsonString = jsonString;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             nicknameLabel.Text = nickname;
-            jsonLabel.Text = jsonString;
+
+            /* 데이터 목록 불러오기 */
+            Server server = Server.GetInstance();
+            server.WordJSON(server.RequestDataList(server.accessToken, "word"));
+
+            /* 데이터 목록에 있는 언어 콤보박스에 추가 */
+            languageComboBox.Items.Add("(All)");
+            for (int i = 0; i < server.list.Count; i++)
+            {
+                if (!languageComboBox.Items.Contains(server.language[i]))
+                {
+                    languageComboBox.Items.Add(server.language[i]);
+                }
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,20 +71,15 @@ namespace Qcoder
         private void wordButton_Click(object sender, EventArgs e)
         {
             Close();
+            Program.language = languageComboBox.SelectedItem.ToString();
             Program.Form = Program.Forms.Type;
         }
 
         private void gameButton_Click(object sender, EventArgs e)
         {
             Close();
+            Program.language = languageComboBox.SelectedItem.ToString();
             Program.Form = Program.Forms.Game;
-        }
-
-        private void dataListButton_Click(object sender, EventArgs e)
-        {
-            Server server = Server.GetInstance();
-            string requestDataListString = server.RequestDataList(server.accessToken, "word");
-            jsonLabel.Text = requestDataListString;
         }
 
         private void unregistButton_Click(object sender, EventArgs e)

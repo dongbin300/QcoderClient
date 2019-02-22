@@ -14,30 +14,51 @@ namespace Qcoder
     {
         private string example;
         private string answer;
-        private string[] words = { "printf", "scanf", "fprintf", "fscanf", "puts", "gets", "fputs", "fgets", "putchar", "getchar", "if", "else if", "else", "for", "while", "do while", "switch case", "break", "continue", "int", "float", "double", "long", "char", "strlen", "strcat", "strcpy", "strcmp", "strtok", "fopen", "fclose", "memset", "malloc", "FILE*", "char*", "bool", "void", "main" };
+        private string[] languages;
+        private string[] types;
+        private string[] contents;
         private float elapsedTime;
         private int typeSpeed;
         private int score;
+        private string language;
 
-        public GameForm()
+        public GameForm(string language)
         {
             InitializeComponent();
+            this.language = language;
         }
 
         private void NewExample()
         {
             Random random = new Random();
-
-            example = words[random.Next(words.Length)];
+            int index = random.Next(contents.Length);
+            example = contents[index];
             exampleLabel.Text = example;
-            exampleLabel.Location = new Point(30 + random.Next(440), 30 + random.Next(440));
+            languageTypeLabel.Text = $"{languages[index]} {types[index]}";
         }
 
         private void GameForm_Load(object sender, EventArgs e)
         {
+            /* 설정 초기화 */
             elapsedTime = 0;
             typeSpeed = 0;
             score = 0;
+
+            /* 선택한 언어만 리스트에 저장 */
+            Server server = Server.GetInstance();
+
+            languages = new string[server.list.Count];
+            types = new string[server.list.Count];
+            contents = new string[server.list.Count];
+            for (int i = 0, p = 0; i < server.list.Count; i++)
+            {
+                if (language == server.language[i])
+                {
+                    languages[p] = server.language[i];
+                    types[p] = server.type[i];
+                    contents[p++] = server.content[i];
+                }
+            }
 
             /* 첫 단어 생성 */
             NewExample();

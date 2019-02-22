@@ -30,7 +30,7 @@ namespace Qcoder
             /* 계정 생성 후 로그인 */
             server.Regist(id, password, nickname);
             string loginString = server.Login(id, password);
-            server.ReadJSON(loginString);
+            server.AccountJSON(loginString);
 
             Close();
             Program.Form = Program.Forms.Main;

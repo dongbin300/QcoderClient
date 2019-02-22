@@ -14,17 +14,19 @@ namespace Qcoder
     {
         private string example;
         private string answer;
-        private string[] words = { "printf", "scanf", "fprintf", "fscanf", "puts", "gets", "fputs", "fgets", "putchar", "getchar", "if", "else if", "else", "for", "while", "do while", "switch case", "break", "continue", "int", "float", "double", "long", "char", "strlen", "strcat", "strcpy", "strcmp", "strtok", "fopen", "fclose", "memset", "malloc", "FILE*", "char*", "bool", "void", "main" };
+        private string[] words = { };
         private float elapsedTime;
         private int progressWord;
         private int completionWord;
         private int accuracy;
         private int typeSpeed;
         private int score;
+        private string language;
 
-        public TypeForm()
+        public TypeForm(string language)
         {
             InitializeComponent();
+            this.language = language;
         }
 
         private void NewExample()
@@ -64,12 +66,17 @@ namespace Qcoder
 
         private void TypeForm_Load(object sender, EventArgs e)
         {
+            /* 설정 초기화 */
             elapsedTime = 0;
             progressWord = 0;
             completionWord = 0;
             accuracy = 0;
             typeSpeed = 0;
             score = 0;
+
+            /* 데이터 목록 불러오기 */
+            Server server = Server.GetInstance();
+            server.WordJSON(server.RequestDataList(server.accessToken, "word"));
 
             /* 첫 단어 생성 */
             NewExample();
