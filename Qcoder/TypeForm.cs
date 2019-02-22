@@ -14,7 +14,9 @@ namespace Qcoder
     {
         private string example;
         private string answer;
-        private string[] words = { };
+        private string[] languages;
+        private string[] types;
+        private string[] contents;
         private float elapsedTime;
         private int progressWord;
         private int completionWord;
@@ -32,9 +34,10 @@ namespace Qcoder
         private void NewExample()
         {
             Random random = new Random();
-
-            example = words[random.Next(words.Length)];
+            int index = random.Next(contents.Length);
+            example = contents[index];
             exampleLabel.Text = example;
+            languageTypeLabel.Text = $"{languages[index]} {types[index]}";
         }
 
         private void answerTextBox_TextChanged(object sender, EventArgs e)
@@ -74,9 +77,21 @@ namespace Qcoder
             typeSpeed = 0;
             score = 0;
 
-            /* 데이터 목록 불러오기 */
+            /* 선택한 언어만 리스트에 저장 */
             Server server = Server.GetInstance();
-            server.WordJSON(server.RequestDataList(server.accessToken, "word"));
+
+            languages = new string[server.list.Count];
+            types = new string[server.list.Count];
+            contents = new string[server.list.Count];
+            for (int i = 0, p = 0; i < server.list.Count; i++)
+            {
+                if (language == server.language[i])
+                {
+                    languages[p] = server.language[i];
+                    types[p] = server.type[i];
+                    contents[p++] = server.content[i];
+                }
+            }
 
             /* 첫 단어 생성 */
             NewExample();
