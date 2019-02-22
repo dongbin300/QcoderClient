@@ -83,13 +83,25 @@ namespace Qcoder
             languages = new string[server.list.Count];
             types = new string[server.list.Count];
             contents = new string[server.list.Count];
-            for (int i = 0, p = 0; i < server.list.Count; i++)
+            if (language == "(All)")
             {
-                if (language == server.language[i])
+                for (int i = 0, p = 0; i < server.list.Count; i++)
                 {
                     languages[p] = server.language[i];
                     types[p] = server.type[i];
                     contents[p++] = server.content[i];
+                }
+            }
+            else
+            {
+                for (int i = 0, p = 0; i < server.list.Count; i++)
+                {
+                    if (language == server.language[i])
+                    {
+                        languages[p] = server.language[i];
+                        types[p] = server.type[i];
+                        contents[p++] = server.content[i];
+                    }
                 }
             }
 

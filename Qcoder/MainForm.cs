@@ -37,6 +37,7 @@ namespace Qcoder
                     languageComboBox.Items.Add(server.language[i]);
                 }
             }
+            languageComboBox.SelectedIndex = 0;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Qcoder
 {
@@ -27,14 +28,24 @@ namespace Qcoder
             Server server = Server.GetInstance();
             string nickname = nicknameTextBox.Text;
 
-            /* 계정 생성 후 로그인 */
-            server.Regist(id, password, nickname);
-            string loginString = server.Login(id, password);
-            server.AccountJSON(loginString);
+            Regex nicknameRegex = new Regex(@"^[!-~가-힣]{2,20}$");
+            Match nicknameMatch = nicknameRegex.Match(nickname);
 
-            Close();
-            Program.Form = Program.Forms.Main;
-            Program.nickname = nickname;
+            if(nicknameMatch.Success)
+            {
+                /* 계정 생성 후 로그인 */
+                server.Regist(id, password, nickname);
+                string loginString = server.Login(id, password);
+                server.AccountJSON(loginString);
+
+                Close();
+                Program.Form = Program.Forms.Main;
+                Program.nickname = nickname;
+            }
+            else
+            {
+                MessageBox.Show("2~20자의 아스키 문자, 한글만 가능합니다.");
+            }
         }
 
         private void WelcomeForm_FormClosing(object sender, FormClosingEventArgs e)
