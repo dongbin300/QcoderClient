@@ -42,9 +42,9 @@
             // answerTextBox
             // 
             this.answerTextBox.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.answerTextBox.Location = new System.Drawing.Point(190, 469);
+            this.answerTextBox.Location = new System.Drawing.Point(190, 472);
             this.answerTextBox.Name = "answerTextBox";
-            this.answerTextBox.Size = new System.Drawing.Size(100, 22);
+            this.answerTextBox.Size = new System.Drawing.Size(135, 22);
             this.answerTextBox.TabIndex = 0;
             this.answerTextBox.TextChanged += new System.EventHandler(this.answerTextBox_TextChanged);
             // 
@@ -64,41 +64,39 @@
             // 
             // scoreLabel
             // 
-            this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.scoreLabel.Location = new System.Drawing.Point(142, 481);
+            this.scoreLabel.Location = new System.Drawing.Point(124, 476);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(42, 13);
+            this.scoreLabel.Size = new System.Drawing.Size(60, 20);
             this.scoreLabel.TabIndex = 3;
             this.scoreLabel.Text = "00000";
+            this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // elapsedTimeLabel
             // 
-            this.elapsedTimeLabel.AutoSize = true;
             this.elapsedTimeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.elapsedTimeLabel.Location = new System.Drawing.Point(452, 481);
+            this.elapsedTimeLabel.Location = new System.Drawing.Point(434, 476);
             this.elapsedTimeLabel.Name = "elapsedTimeLabel";
-            this.elapsedTimeLabel.Size = new System.Drawing.Size(32, 13);
+            this.elapsedTimeLabel.Size = new System.Drawing.Size(50, 20);
             this.elapsedTimeLabel.TabIndex = 7;
             this.elapsedTimeLabel.Text = "0:00";
+            this.elapsedTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // typeSpeedLabel
             // 
-            this.typeSpeedLabel.AutoSize = true;
             this.typeSpeedLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.typeSpeedLabel.Location = new System.Drawing.Point(296, 481);
+            this.typeSpeedLabel.Location = new System.Drawing.Point(331, 476);
             this.typeSpeedLabel.Name = "typeSpeedLabel";
-            this.typeSpeedLabel.Size = new System.Drawing.Size(56, 13);
+            this.typeSpeedLabel.Size = new System.Drawing.Size(70, 20);
             this.typeSpeedLabel.TabIndex = 8;
             this.typeSpeedLabel.Text = "0000 t/s";
             // 
             // languageTypeLabel
             // 
-            this.languageTypeLabel.AutoSize = true;
             this.languageTypeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.languageTypeLabel.Location = new System.Drawing.Point(12, 481);
+            this.languageTypeLabel.Location = new System.Drawing.Point(0, 476);
             this.languageTypeLabel.Name = "languageTypeLabel";
-            this.languageTypeLabel.Size = new System.Drawing.Size(113, 13);
+            this.languageTypeLabel.Size = new System.Drawing.Size(145, 20);
             this.languageTypeLabel.TabIndex = 9;
             this.languageTypeLabel.Text = "_language_type_";
             // 

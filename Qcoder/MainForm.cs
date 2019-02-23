@@ -13,6 +13,7 @@ namespace Qcoder
     public partial class MainForm : Form
     {
         public string nickname { get; set; }
+        public static int fontSize;
 
         public MainForm(string nickname)
         {
@@ -23,6 +24,7 @@ namespace Qcoder
         private void MainForm_Load(object sender, EventArgs e)
         {
             nicknameLabel.Text = nickname;
+            fontSize = Properties.Settings.Default.fontSize;
 
             /* 데이터 목록 불러오기 */
             Server server = Server.GetInstance();
@@ -30,6 +32,7 @@ namespace Qcoder
 
             /* 데이터 목록에 있는 언어 콤보박스에 추가 */
             languageComboBox.Items.Add("(All)");
+
             for (int i = 0; i < server.list.Count; i++)
             {
                 if (!languageComboBox.Items.Contains(server.language[i]))
@@ -87,6 +90,12 @@ namespace Qcoder
         {
             Close();
             Program.Form = Program.Forms.Unregist;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.Form = Program.Forms.Settings;
         }
     }
 }

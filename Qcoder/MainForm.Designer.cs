@@ -44,6 +44,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -68,7 +69,7 @@
             // 
             this.wordButton.FlatAppearance.BorderSize = 2;
             this.wordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.wordButton.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.wordButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.wordButton.Location = new System.Drawing.Point(11, 44);
             this.wordButton.Name = "wordButton";
             this.wordButton.Size = new System.Drawing.Size(200, 80);
@@ -82,12 +83,12 @@
             // 
             this.sentenceButton.FlatAppearance.BorderSize = 2;
             this.sentenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sentenceButton.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold);
+            this.sentenceButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.sentenceButton.Location = new System.Drawing.Point(232, 44);
             this.sentenceButton.Name = "sentenceButton";
             this.sentenceButton.Size = new System.Drawing.Size(200, 80);
             this.sentenceButton.TabIndex = 2;
-            this.sentenceButton.Text = "짧은글";
+            this.sentenceButton.Text = "짧은 글";
             this.sentenceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.sentenceButton.UseVisualStyleBackColor = true;
             // 
@@ -95,12 +96,12 @@
             // 
             this.articleButton.FlatAppearance.BorderSize = 2;
             this.articleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.articleButton.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold);
+            this.articleButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.articleButton.Location = new System.Drawing.Point(11, 144);
             this.articleButton.Name = "articleButton";
             this.articleButton.Size = new System.Drawing.Size(200, 80);
             this.articleButton.TabIndex = 3;
-            this.articleButton.Text = "긴글";
+            this.articleButton.Text = "긴 글";
             this.articleButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.articleButton.UseVisualStyleBackColor = true;
             // 
@@ -108,7 +109,7 @@
             // 
             this.gameButton.FlatAppearance.BorderSize = 2;
             this.gameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.gameButton.Font = new System.Drawing.Font("맑은 고딕", 24F, System.Drawing.FontStyle.Bold);
+            this.gameButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.gameButton.Location = new System.Drawing.Point(232, 144);
             this.gameButton.Name = "gameButton";
             this.gameButton.Size = new System.Drawing.Size(200, 80);
@@ -218,6 +219,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.button1);
             this.panel2.Controls.Add(this.logoutButton);
             this.panel2.Controls.Add(this.unregistButton);
             this.panel2.Controls.Add(this.pictureBox1);
@@ -236,6 +238,19 @@
             this.pictureBox1.Size = new System.Drawing.Size(25, 25);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(12, 32);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 22);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "설정";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainForm
             // 
@@ -281,5 +296,6 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button button1;
     }
 }

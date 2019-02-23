@@ -50,6 +50,14 @@ namespace Qcoder
             correctSound = new SoundPlayer(@"correct.wav");
             incorrectSound = new SoundPlayer(@"incorrect.wav");
 
+            /* 폰트 설정 */
+            exampleLabel.Font = new Font("굴림", MainForm.fontSize);
+            languageTypeLabel.Font = new Font("굴림", MainForm.fontSize);
+            elapsedTimeLabel.Font = new Font("굴림", MainForm.fontSize);
+            scoreLabel.Font = new Font("굴림", MainForm.fontSize);
+            typeSpeedLabel.Font = new Font("굴림", MainForm.fontSize);
+            answerTextBox.Font = new Font("굴림", MainForm.fontSize);
+
             /* 설정 초기화 */
             elapsedTime = 0;
             typeSpeed = 0;
@@ -98,7 +106,7 @@ namespace Qcoder
 
         private void answerTextBox_TextChanged(object sender, EventArgs e)
         {
-            hitSound.Play();
+            //hitSound.Play();
 
             answer = answerTextBox.Text;
 
@@ -106,7 +114,7 @@ namespace Qcoder
             {
                 if (example == answer)
                 {
-                    correctSound.Play();
+                    //correctSound.Play();
 
                     score += example.Length * 10;
 
@@ -115,7 +123,7 @@ namespace Qcoder
                 }
                 else
                 {
-                    incorrectSound.Play();
+                    //incorrectSound.Play();
 
                     NewExample();
                     answerTextBox.Clear();

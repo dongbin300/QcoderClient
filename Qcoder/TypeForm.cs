@@ -47,13 +47,14 @@ namespace Qcoder
 
         private void answerTextBox_TextChanged(object sender, EventArgs e)
         {
+            //hitSound.Play();
             answer = answerTextBox.Text;
 
             if(answer.Length > 0 && answer.Length == example.Length)
             {
                 if (example == answer)
                 {
-                    correctSound.Play();
+                    //correctSound.Play();
 
                     progressWord++;
                     completionWord++;
@@ -64,7 +65,7 @@ namespace Qcoder
                 }
                 else
                 {
-                    incorrectSound.Play();
+                    //incorrectSound.Play();
 
                     progressWord++;
 
@@ -75,17 +76,24 @@ namespace Qcoder
             }
         }
 
-        private void hitSoundPlay()
-        {
-            hitSound.Play();
-        }
-
         private void TypeForm_Load(object sender, EventArgs e)
         {
             /* 사운드 설정 */
             hitSound = new SoundPlayer(@"keyboard.wav");
             correctSound = new SoundPlayer(@"correct.wav");
             incorrectSound = new SoundPlayer(@"incorrect.wav");
+
+            /* 폰트 설정 */
+            exampleLabel.Font = new Font("굴림", MainForm.fontSize);
+            languageTypeLabel.Font = new Font("굴림", MainForm.fontSize);
+            elapsedTimeLabel.Font = new Font("굴림", MainForm.fontSize);
+            scoreLabel.Font = new Font("굴림", MainForm.fontSize);
+            progressCountLabel.Font = new Font("굴림", MainForm.fontSize);
+            accuracyLabel.Font = new Font("굴림", MainForm.fontSize);
+            typeSpeedLabel.Font = new Font("굴림", MainForm.fontSize);
+            answerTextBox.Font = new Font("굴림", MainForm.fontSize);
+            percentLabel.Font = new Font("굴림", MainForm.fontSize);
+            tpmLabel.Font = new Font("굴림", MainForm.fontSize);
 
             /* 설정 초기화 */
             elapsedTime = 0;
@@ -142,15 +150,15 @@ namespace Qcoder
             typeSpeed = (int)(score / elapsedTime * 6);
             elapsedTimeLabel.Text = string.Format("0:{0:00}", (int)elapsedTime);
             progressCountLabel.Text = $"{completionWord} / {progressWord}";
-            accuracyLabel.Text = $"{accuracy} %";
-            typeSpeedLabel.Text = $"{typeSpeed} t/s";
+            accuracyLabel.Text = $"{accuracy}";
+            typeSpeedLabel.Text = $"{typeSpeed}";
             scoreLabel.Text = $"{score}";
 
             if(elapsedTime >= 60.0f)
             {
                 mainTimer.Stop();
                 Server server = Server.GetInstance();
-                string resultMessage = $"{server.userNick} 님\n\n진행한 시간: {string.Format("{0}", (int)elapsedTime)}초\n진행한 단어: {progressWord}\n완성한 단어: {completionWord}\n정확도: {accuracy}%\n타자 속도: {typeSpeed}t/s\n점수: {score}";
+                string resultMessage = $"{server.userNick} 님\n\n진행한 시간: {string.Format("{0}", (int)elapsedTime)}초\n진행한 단어: {progressWord}\n완성한 단어: {completionWord}\n정확도: {accuracy}%\n타자 속도: {typeSpeed}t/m\n점수: {score}";
                 MessageBox.Show(resultMessage, "타자연습(단어)");
                 Close();
                 Program.Form = Program.Forms.Main;

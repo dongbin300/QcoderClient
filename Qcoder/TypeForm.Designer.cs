@@ -39,6 +39,8 @@
             this.mainTimer = new System.Windows.Forms.Timer(this.components);
             this.languageTypeLabel = new System.Windows.Forms.Label();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.percentLabel = new System.Windows.Forms.Label();
+            this.tpmLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // exampleLabel
@@ -54,61 +56,61 @@
             // answerTextBox
             // 
             this.answerTextBox.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.answerTextBox.Location = new System.Drawing.Point(15, 29);
+            this.answerTextBox.Location = new System.Drawing.Point(15, 33);
             this.answerTextBox.Name = "answerTextBox";
-            this.answerTextBox.Size = new System.Drawing.Size(100, 22);
+            this.answerTextBox.Size = new System.Drawing.Size(142, 22);
             this.answerTextBox.TabIndex = 1;
             this.answerTextBox.TextChanged += new System.EventHandler(this.answerTextBox_TextChanged);
             // 
             // scoreLabel
             // 
-            this.scoreLabel.AutoSize = true;
             this.scoreLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.scoreLabel.Location = new System.Drawing.Point(278, 8);
+            this.scoreLabel.Location = new System.Drawing.Point(278, 9);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(42, 13);
+            this.scoreLabel.Size = new System.Drawing.Size(42, 20);
             this.scoreLabel.TabIndex = 2;
             this.scoreLabel.Text = "00000";
+            this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // progressCountLabel
             // 
-            this.progressCountLabel.AutoSize = true;
             this.progressCountLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.progressCountLabel.Location = new System.Drawing.Point(207, 21);
+            this.progressCountLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.progressCountLabel.Location = new System.Drawing.Point(195, 38);
             this.progressCountLabel.Name = "progressCountLabel";
-            this.progressCountLabel.Size = new System.Drawing.Size(63, 13);
+            this.progressCountLabel.Size = new System.Drawing.Size(80, 20);
             this.progressCountLabel.TabIndex = 3;
             this.progressCountLabel.Text = "000 / 000";
             // 
             // accuracyLabel
             // 
-            this.accuracyLabel.AutoSize = true;
             this.accuracyLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.accuracyLabel.Location = new System.Drawing.Point(276, 21);
+            this.accuracyLabel.Location = new System.Drawing.Point(278, 34);
             this.accuracyLabel.Name = "accuracyLabel";
-            this.accuracyLabel.Size = new System.Drawing.Size(44, 13);
+            this.accuracyLabel.Size = new System.Drawing.Size(42, 20);
             this.accuracyLabel.TabIndex = 4;
-            this.accuracyLabel.Text = "100 %";
+            this.accuracyLabel.Text = "00000";
+            this.accuracyLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // typeSpeedLabel
             // 
-            this.typeSpeedLabel.AutoSize = true;
             this.typeSpeedLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.typeSpeedLabel.Location = new System.Drawing.Point(264, 34);
+            this.typeSpeedLabel.Location = new System.Drawing.Point(278, 59);
             this.typeSpeedLabel.Name = "typeSpeedLabel";
-            this.typeSpeedLabel.Size = new System.Drawing.Size(56, 13);
+            this.typeSpeedLabel.Size = new System.Drawing.Size(42, 20);
             this.typeSpeedLabel.TabIndex = 5;
-            this.typeSpeedLabel.Text = "0000 t/s";
+            this.typeSpeedLabel.Text = "00000";
+            this.typeSpeedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // elapsedTimeLabel
             // 
-            this.elapsedTimeLabel.AutoSize = true;
             this.elapsedTimeLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.elapsedTimeLabel.Location = new System.Drawing.Point(288, 81);
+            this.elapsedTimeLabel.Location = new System.Drawing.Point(278, 99);
             this.elapsedTimeLabel.Name = "elapsedTimeLabel";
-            this.elapsedTimeLabel.Size = new System.Drawing.Size(32, 13);
+            this.elapsedTimeLabel.Size = new System.Drawing.Size(42, 20);
             this.elapsedTimeLabel.TabIndex = 6;
-            this.elapsedTimeLabel.Text = "0:00";
+            this.elapsedTimeLabel.Text = "00:00";
+            this.elapsedTimeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // mainTimer
             // 
@@ -118,7 +120,7 @@
             // 
             this.languageTypeLabel.AutoSize = true;
             this.languageTypeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.languageTypeLabel.Location = new System.Drawing.Point(12, 81);
+            this.languageTypeLabel.Location = new System.Drawing.Point(13, 99);
             this.languageTypeLabel.Name = "languageTypeLabel";
             this.languageTypeLabel.Size = new System.Drawing.Size(113, 13);
             this.languageTypeLabel.TabIndex = 7;
@@ -128,19 +130,41 @@
             // 
             this.cancelButton.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Location = new System.Drawing.Point(0, 103);
+            this.cancelButton.Location = new System.Drawing.Point(0, 126);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(324, 23);
+            this.cancelButton.Size = new System.Drawing.Size(363, 23);
             this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "그만하기";
             this.cancelButton.UseVisualStyleBackColor = true;
             this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
+            // percentLabel
+            // 
+            this.percentLabel.Font = new System.Drawing.Font("굴림", 9.75F);
+            this.percentLabel.Location = new System.Drawing.Point(317, 34);
+            this.percentLabel.Name = "percentLabel";
+            this.percentLabel.Size = new System.Drawing.Size(19, 20);
+            this.percentLabel.TabIndex = 9;
+            this.percentLabel.Text = "%";
+            this.percentLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tpmLabel
+            // 
+            this.tpmLabel.Font = new System.Drawing.Font("굴림", 9.75F);
+            this.tpmLabel.Location = new System.Drawing.Point(319, 59);
+            this.tpmLabel.Name = "tpmLabel";
+            this.tpmLabel.Size = new System.Drawing.Size(40, 20);
+            this.tpmLabel.TabIndex = 10;
+            this.tpmLabel.Text = "t/m";
+            this.tpmLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // TypeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 126);
+            this.ClientSize = new System.Drawing.Size(363, 149);
+            this.Controls.Add(this.tpmLabel);
+            this.Controls.Add(this.percentLabel);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.languageTypeLabel);
             this.Controls.Add(this.elapsedTimeLabel);
@@ -154,7 +178,7 @@
             this.KeyPreview = true;
             this.Name = "TypeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "타자연습";
+            this.Text = "d";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TypeForm_FormClosing);
             this.Load += new System.EventHandler(this.TypeForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TypeForm_KeyDown);
@@ -175,5 +199,7 @@
         private System.Windows.Forms.Timer mainTimer;
         private System.Windows.Forms.Label languageTypeLabel;
         private System.Windows.Forms.Button cancelButton;
+        private System.Windows.Forms.Label percentLabel;
+        private System.Windows.Forms.Label tpmLabel;
     }
 }
