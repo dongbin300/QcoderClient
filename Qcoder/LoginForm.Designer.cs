@@ -34,6 +34,7 @@
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.loginButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -74,7 +75,7 @@
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginButton.Location = new System.Drawing.Point(211, 21);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(75, 48);
+            this.loginButton.Size = new System.Drawing.Size(65, 48);
             this.loginButton.TabIndex = 3;
             this.loginButton.Text = "로그인";
             this.loginButton.UseVisualStyleBackColor = true;
@@ -84,7 +85,7 @@
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(292, 21);
+            this.button1.Location = new System.Drawing.Point(353, 21);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(52, 48);
             this.button1.TabIndex = 4;
@@ -92,12 +93,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // exitButton
+            // 
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Location = new System.Drawing.Point(282, 21);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(65, 48);
+            this.exitButton.TabIndex = 3;
+            this.exitButton.Text = "종료";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 92);
+            this.ClientSize = new System.Drawing.Size(443, 92);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.label2);
@@ -106,6 +119,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "LoginForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Qcoder";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.Load += new System.EventHandler(this.LoginForm_Load);
@@ -123,6 +137,7 @@
         private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button exitButton;
     }
 }
 

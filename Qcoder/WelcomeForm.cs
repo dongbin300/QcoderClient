@@ -52,5 +52,15 @@ namespace Qcoder
         {
             Program.Form = Program.Forms.Exit;
         }
+
+        private void WelcomeForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    registButton_Click(sender, e);
+                    break;
+            }
+        }
     }
 }

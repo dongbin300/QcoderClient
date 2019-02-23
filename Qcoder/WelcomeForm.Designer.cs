@@ -51,6 +51,7 @@
             // 
             // registButton
             // 
+            this.registButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.registButton.Location = new System.Drawing.Point(196, 9);
             this.registButton.Name = "registButton";
             this.registButton.Size = new System.Drawing.Size(75, 49);
@@ -67,9 +68,13 @@
             this.Controls.Add(this.registButton);
             this.Controls.Add(this.nicknameTextBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "WelcomeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "가입";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.WelcomeForm_FormClosing);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WelcomeForm_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

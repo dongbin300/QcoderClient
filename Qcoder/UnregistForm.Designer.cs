@@ -31,6 +31,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.reasonTextBox = new System.Windows.Forms.TextBox();
             this.unregistButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -47,28 +48,45 @@
             this.reasonTextBox.Location = new System.Drawing.Point(14, 24);
             this.reasonTextBox.Multiline = true;
             this.reasonTextBox.Name = "reasonTextBox";
-            this.reasonTextBox.Size = new System.Drawing.Size(261, 66);
+            this.reasonTextBox.Size = new System.Drawing.Size(344, 66);
             this.reasonTextBox.TabIndex = 1;
             // 
             // unregistButton
             // 
-            this.unregistButton.Location = new System.Drawing.Point(281, 9);
+            this.unregistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.unregistButton.ForeColor = System.Drawing.Color.Red;
+            this.unregistButton.Location = new System.Drawing.Point(200, 96);
             this.unregistButton.Name = "unregistButton";
-            this.unregistButton.Size = new System.Drawing.Size(75, 81);
+            this.unregistButton.Size = new System.Drawing.Size(75, 29);
             this.unregistButton.TabIndex = 2;
             this.unregistButton.Text = "탈퇴";
             this.unregistButton.UseVisualStyleBackColor = true;
             this.unregistButton.Click += new System.EventHandler(this.unregistButton_Click);
             // 
+            // cancelButton
+            // 
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelButton.ForeColor = System.Drawing.Color.Black;
+            this.cancelButton.Location = new System.Drawing.Point(283, 96);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(75, 29);
+            this.cancelButton.TabIndex = 2;
+            this.cancelButton.Text = "취소";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // UnregistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(370, 103);
+            this.ClientSize = new System.Drawing.Size(370, 137);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.unregistButton);
             this.Controls.Add(this.reasonTextBox);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "UnregistForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "탈퇴";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UnregistForm_FormClosing);
             this.ResumeLayout(false);
@@ -81,5 +99,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox reasonTextBox;
         private System.Windows.Forms.Button unregistButton;
+        private System.Windows.Forms.Button cancelButton;
     }
 }

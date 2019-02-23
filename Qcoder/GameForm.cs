@@ -40,6 +40,7 @@ namespace Qcoder
             example = contents[index];
             exampleLabel.Text = example;
             languageTypeLabel.Text = $"{languages[index]} {types[index]}";
+            exampleLabel.Location = new Point(10 + random.Next(380), 10 + random.Next(380));
         }
 
         private void GameForm_Load(object sender, EventArgs e)
@@ -91,7 +92,8 @@ namespace Qcoder
 
         private void GameForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.Form = Program.Forms.Exit;
+            mainTimer.Stop();
+            Program.Form = Program.Forms.Main;
         }
 
         private void answerTextBox_TextChanged(object sender, EventArgs e)
@@ -148,6 +150,11 @@ namespace Qcoder
                     MessageBox.Show("1분동안 랜덤으로 생성되는 단어를 따라서 입력합니다.", "게임 도움말");
                     break;
             }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

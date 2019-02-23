@@ -132,7 +132,8 @@ namespace Qcoder
 
         private void TypeForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.Form = Program.Forms.Exit;
+            mainTimer.Stop();
+            Program.Form = Program.Forms.Main;
         }
 
         private void mainTimer_Tick(object sender, EventArgs e)
@@ -164,6 +165,11 @@ namespace Qcoder
                     MessageBox.Show("위에 제시된 단어를 따라서 입력합니다.", "타자 도움말");
                     break;
             }
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

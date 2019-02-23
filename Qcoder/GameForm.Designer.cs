@@ -36,6 +36,7 @@
             this.elapsedTimeLabel = new System.Windows.Forms.Label();
             this.typeSpeedLabel = new System.Windows.Forms.Label();
             this.languageTypeLabel = new System.Windows.Forms.Label();
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // answerTextBox
@@ -64,27 +65,30 @@
             // scoreLabel
             // 
             this.scoreLabel.AutoSize = true;
-            this.scoreLabel.Location = new System.Drawing.Point(149, 481);
+            this.scoreLabel.Font = new System.Drawing.Font("굴림", 9.75F);
+            this.scoreLabel.Location = new System.Drawing.Point(142, 481);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(35, 12);
+            this.scoreLabel.Size = new System.Drawing.Size(42, 13);
             this.scoreLabel.TabIndex = 3;
             this.scoreLabel.Text = "00000";
             // 
             // elapsedTimeLabel
             // 
             this.elapsedTimeLabel.AutoSize = true;
-            this.elapsedTimeLabel.Location = new System.Drawing.Point(445, 481);
+            this.elapsedTimeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.elapsedTimeLabel.Location = new System.Drawing.Point(452, 481);
             this.elapsedTimeLabel.Name = "elapsedTimeLabel";
-            this.elapsedTimeLabel.Size = new System.Drawing.Size(27, 12);
+            this.elapsedTimeLabel.Size = new System.Drawing.Size(32, 13);
             this.elapsedTimeLabel.TabIndex = 7;
             this.elapsedTimeLabel.Text = "0:00";
             // 
             // typeSpeedLabel
             // 
             this.typeSpeedLabel.AutoSize = true;
+            this.typeSpeedLabel.Font = new System.Drawing.Font("굴림", 9.75F);
             this.typeSpeedLabel.Location = new System.Drawing.Point(296, 481);
             this.typeSpeedLabel.Name = "typeSpeedLabel";
-            this.typeSpeedLabel.Size = new System.Drawing.Size(49, 12);
+            this.typeSpeedLabel.Size = new System.Drawing.Size(56, 13);
             this.typeSpeedLabel.TabIndex = 8;
             this.typeSpeedLabel.Text = "0000 t/s";
             // 
@@ -98,19 +102,34 @@
             this.languageTypeLabel.TabIndex = 9;
             this.languageTypeLabel.Text = "_language_type_";
             // 
+            // cancelButton
+            // 
+            this.cancelButton.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelButton.Location = new System.Drawing.Point(0, 507);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(484, 23);
+            this.cancelButton.TabIndex = 10;
+            this.cancelButton.Text = "그만하기";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 502);
+            this.ClientSize = new System.Drawing.Size(484, 530);
+            this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.languageTypeLabel);
             this.Controls.Add(this.typeSpeedLabel);
             this.Controls.Add(this.elapsedTimeLabel);
             this.Controls.Add(this.scoreLabel);
             this.Controls.Add(this.exampleLabel);
             this.Controls.Add(this.answerTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "GameForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "타자게임";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameForm_FormClosing);
             this.Load += new System.EventHandler(this.GameForm_Load);
@@ -129,5 +148,6 @@
         private System.Windows.Forms.Label elapsedTimeLabel;
         private System.Windows.Forms.Label typeSpeedLabel;
         private System.Windows.Forms.Label languageTypeLabel;
+        private System.Windows.Forms.Button cancelButton;
     }
 }
