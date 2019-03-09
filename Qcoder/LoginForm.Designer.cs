@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.label1 = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,9 +36,7 @@
             this.loginButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
-            this.internetIconPictureBox = new System.Windows.Forms.PictureBox();
             this.internetConnectTimer = new System.Windows.Forms.Timer(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.internetIconPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -55,7 +52,7 @@
             // 
             this.idTextBox.Location = new System.Drawing.Point(104, 21);
             this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(100, 21);
+            this.idTextBox.Size = new System.Drawing.Size(150, 21);
             this.idTextBox.TabIndex = 1;
             // 
             // label2
@@ -72,13 +69,13 @@
             this.passwordTextBox.Location = new System.Drawing.Point(104, 48);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(100, 21);
+            this.passwordTextBox.Size = new System.Drawing.Size(150, 21);
             this.passwordTextBox.TabIndex = 2;
             // 
             // loginButton
             // 
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.Location = new System.Drawing.Point(139, 75);
+            this.loginButton.Location = new System.Drawing.Point(118, 75);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(65, 29);
             this.loginButton.TabIndex = 3;
@@ -92,7 +89,7 @@
             this.button1.ForeColor = System.Drawing.Color.Red;
             this.button1.Location = new System.Drawing.Point(47, 75);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 29);
+            this.button1.Size = new System.Drawing.Size(65, 29);
             this.button1.TabIndex = 4;
             this.button1.Text = "테스트";
             this.button1.UseVisualStyleBackColor = true;
@@ -101,7 +98,7 @@
             // exitButton
             // 
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Location = new System.Drawing.Point(210, 75);
+            this.exitButton.Location = new System.Drawing.Point(189, 75);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(65, 29);
             this.exitButton.TabIndex = 3;
@@ -109,27 +106,11 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // internetIconPictureBox
-            // 
-            this.internetIconPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.internetIconPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("internetIconPictureBox.Image")));
-            this.internetIconPictureBox.Location = new System.Drawing.Point(227, 21);
-            this.internetIconPictureBox.Name = "internetIconPictureBox";
-            this.internetIconPictureBox.Size = new System.Drawing.Size(48, 48);
-            this.internetIconPictureBox.TabIndex = 5;
-            this.internetIconPictureBox.TabStop = false;
-            // 
-            // internetConnectTimer
-            // 
-            //this.internetConnectTimer.Interval = 1000;
-            //this.internetConnectTimer.Tick += new System.EventHandler(this.internetConnectTimer_Tick);
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 122);
-            this.Controls.Add(this.internetIconPictureBox);
+            this.ClientSize = new System.Drawing.Size(311, 122);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.loginButton);
@@ -145,7 +126,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginForm_FormClosing);
             this.Load += new System.EventHandler(this.LoginForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginForm_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.internetIconPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,7 +140,6 @@
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.PictureBox internetIconPictureBox;
         private System.Windows.Forms.Timer internetConnectTimer;
     }
 }

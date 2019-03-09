@@ -13,30 +13,37 @@ namespace Qcoder
 {
     public partial class TypeForm : Form
     {
+        public enum TypeModes { Word, Sentence, Article };
+        private TypeModes typeMode;
+        private string language;
+
         private string example;
         private string answer;
         private string[] languages;
         private string[] types;
         private string[] contents;
         private float elapsedTime;
-        private int progressWord;
-        private int completionWord;
-        private int accuracy;
-        private int typeSpeed;
+        private int progressStage;
+        private int completionStage;
+        private int progressLetter;
+        private int completionLetter;
+        private float accuracy;
+        private int TPM;
         private int score;
-        private string language;
+        private int rightLetterCount;
 
         SoundPlayer hitSound;
         SoundPlayer correctSound;
         SoundPlayer incorrectSound;
 
-        public TypeForm(string language)
+        public TypeForm(TypeModes typeMode, string language)
         {
             InitializeComponent();
+            this.typeMode = typeMode;
             this.language = language;
         }
 
-        private void NewExample()
+        private void NewWordExample()
         {
             Random random = new Random();
             int index = random.Next(contents.Length);
@@ -45,39 +52,98 @@ namespace Qcoder
             languageTypeLabel.Text = $"{languages[index]} {types[index]}";
         }
 
+        private void NewSentenceExample()
+        {
+            Random random = new Random();
+            int index1 = random.Next(contents.Length);
+            int index2 = random.Next(contents.Length);
+            int index3 = random.Next(contents.Length);
+            example = contents[index1] + " " + contents[index2] + " " + contents[index3];
+            exampleLabel.Text = example;
+            languageTypeLabel.Text = $"{languages[index1]}";
+        }
+
+        private void NewArticleExample()
+        {
+            Random random = new Random();
+            int index1 = random.Next(contents.Length);
+            int index2 = random.Next(contents.Length);
+            int index3 = random.Next(contents.Length);
+            example = contents[index1] + " " + contents[index2] + " " + contents[index3];
+            exampleLabel.Text = example;
+            languageTypeLabel.Text = $"{languages[index1]}";
+        }
+
         private void answerTextBox_TextChanged(object sender, EventArgs e)
         {
             //hitSound.Play();
             answer = answerTextBox.Text;
 
-            if(answer.Length > 0 && answer.Length == example.Length)
+            /* 실시간 글자 체크 */
+            rightLetterCount = 0;
+            for (int i = 0; i < answer.Length; i++)
             {
+                if (answer[i] == example[i])
+                {
+                    rightLetterCount++;
+                }
+            }
+
+            if (answer.Length > 0 && answer.Length == example.Length)
+            {
+                progressStage++;
+                progressLetter += example.Length;
+                completionLetter += rightLetterCount;
+
+                /* 정답 */
                 if (example == answer)
                 {
                     //correctSound.Play();
 
-                    progressWord++;
-                    completionWord++;
+                    completionStage++;
                     score += example.Length * 10;
-
-                    NewExample();
-                    answerTextBox.Clear();
                 }
+                /* 오답 */
                 else
                 {
                     //incorrectSound.Play();
-
-                    progressWord++;
-
-                    NewExample();
-                    answerTextBox.Clear();
                 }
-                accuracy = (int)((float)completionWord / progressWord * 100.0f);
+
+                /* 새로운 문제 */
+                switch (typeMode)
+                {
+                    case TypeModes.Word:
+                        NewWordExample();
+                        break;
+                    case TypeModes.Sentence:
+                        NewSentenceExample();
+                        break;
+                    case TypeModes.Article:
+                        NewArticleExample();
+                        break;
+                }
+                answerTextBox.Clear();
             }
+            /* 정확도 계산 */
+            accuracy = (float)(completionLetter + rightLetterCount) / (progressLetter + answer.Length) * 100.0f;
         }
 
         private void TypeForm_Load(object sender, EventArgs e)
         {
+            /* 폼 설정 */
+            switch (typeMode)
+            {
+                case TypeModes.Word:
+                    answerTextBox.Size = new Size(150, 22);
+                    break;
+                case TypeModes.Sentence:
+                    answerTextBox.Size = new Size(450, 22);
+                    break;
+                case TypeModes.Article:
+
+                    break;
+            }
+
             /* 사운드 설정 */
             hitSound = new SoundPlayer(@"keyboard.wav");
             correctSound = new SoundPlayer(@"correct.wav");
@@ -97,10 +163,12 @@ namespace Qcoder
 
             /* 설정 초기화 */
             elapsedTime = 0;
-            progressWord = 0;
-            completionWord = 0;
+            progressStage = 0;
+            completionStage = 0;
+            progressLetter = 0;
+            completionLetter = 0;
             accuracy = 0;
-            typeSpeed = 0;
+            TPM = 0;
             score = 0;
 
             /* 선택한 언어만 리스트에 저장 */
@@ -131,8 +199,19 @@ namespace Qcoder
                 }
             }
 
-            /* 첫 단어 생성 */
-            NewExample();
+            /* 첫 문제 생성 */
+            switch (typeMode)
+            {
+                case TypeModes.Word:
+                    NewWordExample();
+                    break;
+                case TypeModes.Sentence:
+                    NewSentenceExample();
+                    break;
+                case TypeModes.Article:
+                    NewArticleExample();
+                    break;
+            }
 
             /* 타이머 생성 */
             mainTimer.Start();
@@ -147,22 +226,50 @@ namespace Qcoder
         private void mainTimer_Tick(object sender, EventArgs e)
         {
             elapsedTime += 0.1f;
-            typeSpeed = (int)(score / elapsedTime * 6);
-            elapsedTimeLabel.Text = string.Format("0:{0:00}", (int)elapsedTime);
-            progressCountLabel.Text = $"{completionWord} / {progressWord}";
-            accuracyLabel.Text = $"{accuracy}";
-            typeSpeedLabel.Text = $"{typeSpeed}";
+            TPM = (int)((score + rightLetterCount * 10) / elapsedTime * 6);
+            elapsedTimeLabel.Text = string.Format("{0:0}:{1:00}", (int)elapsedTime / 60, (int)elapsedTime % 60);
+            progressCountLabel.Text = $"{completionStage} / {progressStage}";
+            accuracyLabel.Text = string.Format("{0:0.00}", accuracy);
+            typeSpeedLabel.Text = $"{TPM}";
             scoreLabel.Text = $"{score}";
 
-            if(elapsedTime >= 60.0f)
+            switch (typeMode)
             {
-                mainTimer.Stop();
-                Server server = Server.GetInstance();
-                string resultMessage = $"{server.userNick} 님\n\n진행한 시간: {string.Format("{0}", (int)elapsedTime)}초\n진행한 단어: {progressWord}\n완성한 단어: {completionWord}\n정확도: {accuracy}%\n타자 속도: {typeSpeed}t/m\n점수: {score}";
-                MessageBox.Show(resultMessage, "타자연습(단어)");
-                Close();
-                Program.Form = Program.Forms.Main;
+                case TypeModes.Word:
+                    if (elapsedTime >= 60.0f)
+                    {
+                        mainTimer.Stop();
+                        Server server = Server.GetInstance();
+                        string resultMessage = $"{server.userNick} 님\n\n진행한 단어: {progressStage}\n완성한 단어: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}";
+                        MessageBox.Show(resultMessage, "타자연습(단어)");
+                        Close();
+                        Program.Form = Program.Forms.Main;
+                    }
+                    break;
+                case TypeModes.Sentence:
+                    if (elapsedTime >= 120.0f)
+                    {
+                        mainTimer.Stop();
+                        Server server = Server.GetInstance();
+                        string resultMessage = $"{server.userNick} 님\n\n진행한 문장: {progressStage}\n완성한 문장: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}";
+                        MessageBox.Show(resultMessage, "타자연습(짧은 글)");
+                        Close();
+                        Program.Form = Program.Forms.Main;
+                    }
+                    break;
+                case TypeModes.Article:
+                    if (elapsedTime >= 180.0f)
+                    {
+                        mainTimer.Stop();
+                        Server server = Server.GetInstance();
+                        string resultMessage = $"{server.userNick} 님\n\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}";
+                        MessageBox.Show(resultMessage, "타자연습(긴 글)");
+                        Close();
+                        Program.Form = Program.Forms.Main;
+                    }
+                    break;
             }
+
         }
 
         private void TypeForm_KeyDown(object sender, KeyEventArgs e)
@@ -170,7 +277,7 @@ namespace Qcoder
             switch (e.KeyCode)
             {
                 case Keys.F1:
-                    MessageBox.Show("위에 제시된 단어를 따라서 입력합니다.", "타자 도움말");
+                    MessageBox.Show("위에 제시된 문제를 따라서 입력합니다.", "타자 도움말");
                     break;
             }
         }

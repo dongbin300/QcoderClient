@@ -43,8 +43,8 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -91,6 +91,7 @@
             this.sentenceButton.Text = "짧은 글";
             this.sentenceButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.sentenceButton.UseVisualStyleBackColor = true;
+            this.sentenceButton.Click += new System.EventHandler(this.sentenceButton_Click);
             // 
             // articleButton
             // 
@@ -104,6 +105,7 @@
             this.articleButton.Text = "긴 글";
             this.articleButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.articleButton.UseVisualStyleBackColor = true;
+            this.articleButton.Click += new System.EventHandler(this.articleButton_Click);
             // 
             // gameButton
             // 
@@ -229,16 +231,6 @@
             this.panel2.Size = new System.Drawing.Size(177, 57);
             this.panel2.TabIndex = 10;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // button1
             // 
             this.button1.FlatAppearance.BorderSize = 0;
@@ -251,6 +243,16 @@
             this.button1.Text = "설정";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // MainForm
             // 

@@ -19,6 +19,7 @@ namespace Qcoder
         public static string password;
         public static string nickname;
         public static string language;
+        public static TypeForm.TypeModes typeMode;
         public static string jsonString;
 
         private static System.Timers.Timer reissueTokenTimer;
@@ -63,7 +64,7 @@ namespace Qcoder
                         Application.Run(new MainForm(nickname));
                         break;
                     case Forms.Type:
-                        Application.Run(new TypeForm(language));
+                        Application.Run(new TypeForm(typeMode, language));
                         break;
                     case Forms.Game:
                         Application.Run(new GameForm(language));

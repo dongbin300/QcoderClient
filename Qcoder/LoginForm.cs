@@ -107,7 +107,7 @@ namespace Qcoder
         private void button1_Click(object sender, EventArgs e)
         {
             Server server = Server.GetInstance();
-            string id = "testman10";
+            string id = "testman";
             string password = "1q2w3e4r!";
 
             /* 서버에 로그인 요청 */

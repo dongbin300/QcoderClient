@@ -76,6 +76,7 @@ namespace Qcoder
         {
             Close();
             Program.language = languageComboBox.SelectedItem.ToString();
+            Program.typeMode = TypeForm.TypeModes.Word;
             Program.Form = Program.Forms.Type;
         }
 
@@ -96,6 +97,22 @@ namespace Qcoder
         {
             Close();
             Program.Form = Program.Forms.Settings;
+        }
+
+        private void sentenceButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.language = languageComboBox.SelectedItem.ToString();
+            Program.typeMode = TypeForm.TypeModes.Sentence;
+            Program.Form = Program.Forms.Type;
+        }
+
+        private void articleButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.language = languageComboBox.SelectedItem.ToString();
+            Program.typeMode = TypeForm.TypeModes.Article;
+            Program.Form = Program.Forms.Type;
         }
     }
 }
