@@ -16,6 +16,7 @@ namespace Qcoder
         public enum TypeModes { Word, Sentence, Article };
         private TypeModes typeMode;
         private string language;
+        public static int[] timeLimit = { 60, 120, 180 };
 
         private string example;
         private string answer;
@@ -140,7 +141,6 @@ namespace Qcoder
                     answerTextBox.Size = new Size(450, 22);
                     break;
                 case TypeModes.Article:
-
                     break;
             }
 
@@ -233,43 +233,31 @@ namespace Qcoder
             typeSpeedLabel.Text = $"{TPM}";
             scoreLabel.Text = $"{score}";
 
-            switch (typeMode)
+            /* 제한 시간 끝 */
+            if (elapsedTime >= timeLimit[(int)typeMode])
             {
-                case TypeModes.Word:
-                    if (elapsedTime >= 60.0f)
-                    {
-                        mainTimer.Stop();
-                        Server server = Server.GetInstance();
-                        string resultMessage = $"{server.userNick} 님\n\n진행한 단어: {progressStage}\n완성한 단어: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}";
-                        MessageBox.Show(resultMessage, "타자연습(단어)");
-                        Close();
-                        Program.Form = Program.Forms.Main;
-                    }
-                    break;
-                case TypeModes.Sentence:
-                    if (elapsedTime >= 120.0f)
-                    {
-                        mainTimer.Stop();
-                        Server server = Server.GetInstance();
-                        string resultMessage = $"{server.userNick} 님\n\n진행한 문장: {progressStage}\n완성한 문장: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}";
-                        MessageBox.Show(resultMessage, "타자연습(짧은 글)");
-                        Close();
-                        Program.Form = Program.Forms.Main;
-                    }
-                    break;
-                case TypeModes.Article:
-                    if (elapsedTime >= 180.0f)
-                    {
-                        mainTimer.Stop();
-                        Server server = Server.GetInstance();
-                        string resultMessage = $"{server.userNick} 님\n\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}";
-                        MessageBox.Show(resultMessage, "타자연습(긴 글)");
-                        Close();
-                        Program.Form = Program.Forms.Main;
-                    }
-                    break;
-            }
+                mainTimer.Stop();
+                Server server = Server.GetInstance();
 
+                /* 랭킹 등록 */
+                server.SaveRecord(typeMode, server.accessToken, progressStage, completionStage, accuracy, TPM, score);
+
+                /* 결과 창 */
+                switch(typeMode)
+                {
+                    case TypeModes.Word:
+                        MessageBox.Show($"{server.userNick} 님\n\n진행한 단어: {progressStage}\n완성한 단어: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}", "타자연습(단어)");
+                        break;
+                    case TypeModes.Sentence:
+                        MessageBox.Show($"{server.userNick} 님\n\n진행한 문장: {progressStage}\n완성한 문장: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}", "타자연습(짧은 글)");
+                        break;
+                    case TypeModes.Article:
+                        MessageBox.Show($"{server.userNick} 님\n\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}", "타자연습(긴 글)");
+                        break;
+                }
+                Close();
+                Program.Form = Program.Forms.Main;
+            }
         }
 
         private void TypeForm_KeyDown(object sender, KeyEventArgs e)

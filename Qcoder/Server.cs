@@ -199,9 +199,26 @@ namespace Qcoder
             return GetRequest(url, "X-Access-Token", accessToken, getData);
         }
 
-        public string TryToHackNaver()
+        public string SaveRecord(TypeForm.TypeModes typeMode, string accessToken, int progressStage, int completionStage, float accuracy, int TPM, int score)
         {
-            return GetRequest("https://www.naver.com");
+            string url = string.Empty;
+            string postData = string.Empty;
+            switch(typeMode)
+            {
+                case TypeForm.TypeModes.Word:
+                    url = "https://devworld.net/qcoder/api/putRecordWord.jsp";
+                    postData = $"time_limit={TypeForm.timeLimit[(int)typeMode]}&input_done={progressStage}&input_right={completionStage}&accuracy={accuracy}&tpm={TPM}&score={score}";
+                    break;
+                case TypeForm.TypeModes.Sentence:
+                    url = "https://devworld.net/qcoder/api/putRecordSentence.jsp";
+                    postData = $"time_limit={TypeForm.timeLimit[(int)typeMode]}&input_done={progressStage}&input_right={completionStage}&accuracy={accuracy}&tpm={TPM}&score={score}";
+                    break;
+                case TypeForm.TypeModes.Article:
+                    url = "https://devworld.net/qcoder/api/putRecordArticle.jsp";
+                    postData = $"time_limit={TypeForm.timeLimit[(int)typeMode]}&accuracy={accuracy}&tpm={TPM}&score={score}";
+                    break;
+            }
+            return PostRequest(url, "X-Access-Token", accessToken, postData);
         }
 
         public void AccountJSON(string JSONstring)
