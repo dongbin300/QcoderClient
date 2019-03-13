@@ -161,40 +161,40 @@ namespace Qcoder
 
         public string Regist(string id, string password, string nickname)
         {
-            string url = "https://devworld.net/qcoder/api/register.jsp";
+            string url = "https://api.qcoder.site/auth/register.jsp";
             string postData = $"user_id={id}&user_pw={password}&user_nick={nickname}";
             return PostRequest(url, postData);
         }
 
         public string Unregist(string accessToken, string id, string reason)
         {
-            string url = "https://devworld.net/qcoder/api/unregister.jsp";
+            string url = "https://api.qcoder.site/auth/unregister.jsp";
             string postData = $"user_id={id}&reason={reason}";
             return PostRequest(url, "X-Access-Token", accessToken, postData);
         }
 
         public string Login(string id, string password)
         {
-            string url = "https://devworld.net/qcoder/api/login.jsp";
+            string url = "https://api.qcoder.site/auth/login.jsp";
             string postData = $"user_id={id}&user_pw={password}";
             return PostRequest(url, postData);
         }
 
         public string Logout(string accessToken)
         {
-            string url = "https://devworld.net/qcoder/api/logout.jsp";
+            string url = "https://api.qcoder.site/auth/logout.jsp";
             return GetRequest(url, "X-Access-Token", accessToken);
         }
 
         public string ReissueToken(string accessToken, string refreshToken)
         {
-            string url = "https://devworld.net/qcoder/api/getNewAccessToken.jsp";
+            string url = "https://api.qcoder.site/auth/newAccessToken.jsp";
             return GetRequest(url, "X-Access-Token", accessToken, "X-Refresh-Token", refreshToken);
         }
 
         public string RequestDataList(string accessToken, string type)
         {
-            string url = "https://devworld.net/qcoder/api/getDataList.jsp";
+            string url = "https://api.qcoder.site/data/list.jsp";
             string getData = $"type={type}";
             return GetRequest(url, "X-Access-Token", accessToken, getData);
         }
@@ -206,15 +206,15 @@ namespace Qcoder
             switch(typeMode)
             {
                 case TypeForm.TypeModes.Word:
-                    url = "https://devworld.net/qcoder/api/putRecordWord.jsp";
+                    url = "https://api.qcoder.site/record/word.jsp";
                     postData = $"time_limit={TypeForm.timeLimit[(int)typeMode]}&input_done={progressStage}&input_right={completionStage}&accuracy={accuracy}&tpm={TPM}&score={score}";
                     break;
                 case TypeForm.TypeModes.Sentence:
-                    url = "https://devworld.net/qcoder/api/putRecordSentence.jsp";
+                    url = "https://api.qcoder.site/record/sentence.jsp";
                     postData = $"time_limit={TypeForm.timeLimit[(int)typeMode]}&input_done={progressStage}&input_right={completionStage}&accuracy={accuracy}&tpm={TPM}&score={score}";
                     break;
                 case TypeForm.TypeModes.Article:
-                    url = "https://devworld.net/qcoder/api/putRecordArticle.jsp";
+                    url = "https://api.qcoder.site/record/article.jsp";
                     postData = $"time_limit={TypeForm.timeLimit[(int)typeMode]}&accuracy={accuracy}&tpm={TPM}&score={score}";
                     break;
             }
