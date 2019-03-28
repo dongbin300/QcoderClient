@@ -49,7 +49,7 @@ namespace Qcoder
             Random random = new Random();
             int index = random.Next(contents.Length);
             example = contents[index];
-            if(typeMode == TypeModes.Article)
+            if (typeMode == TypeModes.Article)
             {
                 example = example.Replace("	", "    ");
                 example = example.Replace("\n", "\r\n");
@@ -67,12 +67,12 @@ namespace Qcoder
             /* 실시간 글자 체크 */
             rightLetterCount = 0;
             for (int i = 0; i < answer.Length; i++)
-            {
                 if (answer[i] == example[i])
-                {
                     rightLetterCount++;
-                }
-            }
+
+            /* 줄바꿈 시 자동으로 탭 추가 */
+            if (example[answer.Length] == ' ' && example[answer.Length + 1] == ' ' && example[answer.Length + 2] == ' ' && example[answer.Length + 3] == ' ')
+                answerTextBox.AppendText("	");
 
             if (answer.Length > 0 && answer.Length == example.Length)
             {
@@ -214,13 +214,13 @@ namespace Qcoder
                 {
                     server.SaveRecord(typeMode, server.accessToken, progressStage, completionStage, accuracy, TPM, score);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show($"기록 저장에 실패하였습니다. ({ex.Message})");
                 }
-                
+
                 /* 결과 창 */
-                switch(typeMode)
+                switch (typeMode)
                 {
                     case TypeModes.Word:
                         MessageBox.Show($"{server.userNick} 님\n\n진행한 단어: {progressStage}\n완성한 단어: {completionStage}\n정확도: {accuracy}%\n타자 속도: {TPM}t/m\n점수: {score}", "타자연습(단어)");
