@@ -66,7 +66,7 @@
             // scoreLabel
             // 
             this.scoreLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.scoreLabel.Location = new System.Drawing.Point(997, 50);
+            this.scoreLabel.Location = new System.Drawing.Point(1204, 48);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(42, 20);
             this.scoreLabel.TabIndex = 2;
@@ -76,7 +76,7 @@
             // progressCountLabel
             // 
             this.progressCountLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.progressCountLabel.Location = new System.Drawing.Point(899, 20);
+            this.progressCountLabel.Location = new System.Drawing.Point(1106, 18);
             this.progressCountLabel.Name = "progressCountLabel";
             this.progressCountLabel.Size = new System.Drawing.Size(80, 20);
             this.progressCountLabel.TabIndex = 3;
@@ -86,7 +86,7 @@
             // accuracyLabel
             // 
             this.accuracyLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.accuracyLabel.Location = new System.Drawing.Point(985, 20);
+            this.accuracyLabel.Location = new System.Drawing.Point(1192, 18);
             this.accuracyLabel.Name = "accuracyLabel";
             this.accuracyLabel.Size = new System.Drawing.Size(54, 20);
             this.accuracyLabel.TabIndex = 4;
@@ -96,7 +96,7 @@
             // typeSpeedLabel
             // 
             this.typeSpeedLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.typeSpeedLabel.Location = new System.Drawing.Point(997, 80);
+            this.typeSpeedLabel.Location = new System.Drawing.Point(1204, 78);
             this.typeSpeedLabel.Name = "typeSpeedLabel";
             this.typeSpeedLabel.Size = new System.Drawing.Size(42, 20);
             this.typeSpeedLabel.TabIndex = 5;
@@ -106,7 +106,7 @@
             // elapsedTimeLabel
             // 
             this.elapsedTimeLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.elapsedTimeLabel.Location = new System.Drawing.Point(997, 674);
+            this.elapsedTimeLabel.Location = new System.Drawing.Point(1204, 672);
             this.elapsedTimeLabel.Name = "elapsedTimeLabel";
             this.elapsedTimeLabel.Size = new System.Drawing.Size(42, 20);
             this.elapsedTimeLabel.TabIndex = 6;
@@ -121,7 +121,7 @@
             // 
             this.languageTypeLabel.AutoSize = true;
             this.languageTypeLabel.Font = new System.Drawing.Font("굴림", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.languageTypeLabel.Location = new System.Drawing.Point(9, 681);
+            this.languageTypeLabel.Location = new System.Drawing.Point(9, 676);
             this.languageTypeLabel.Name = "languageTypeLabel";
             this.languageTypeLabel.Size = new System.Drawing.Size(113, 13);
             this.languageTypeLabel.TabIndex = 7;
@@ -133,7 +133,7 @@
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cancelButton.Location = new System.Drawing.Point(0, 697);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(1080, 23);
+            this.cancelButton.Size = new System.Drawing.Size(1280, 23);
             this.cancelButton.TabIndex = 8;
             this.cancelButton.Text = "그만하기";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             // percentLabel
             // 
             this.percentLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.percentLabel.Location = new System.Drawing.Point(1036, 20);
+            this.percentLabel.Location = new System.Drawing.Point(1243, 18);
             this.percentLabel.Name = "percentLabel";
             this.percentLabel.Size = new System.Drawing.Size(19, 20);
             this.percentLabel.TabIndex = 9;
@@ -152,7 +152,7 @@
             // tpmLabel
             // 
             this.tpmLabel.Font = new System.Drawing.Font("굴림", 9.75F);
-            this.tpmLabel.Location = new System.Drawing.Point(1038, 80);
+            this.tpmLabel.Location = new System.Drawing.Point(1245, 78);
             this.tpmLabel.Name = "tpmLabel";
             this.tpmLabel.Size = new System.Drawing.Size(40, 20);
             this.tpmLabel.TabIndex = 10;
@@ -163,7 +163,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1080, 720);
+            this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.tpmLabel);
             this.Controls.Add(this.percentLabel);
             this.Controls.Add(this.cancelButton);

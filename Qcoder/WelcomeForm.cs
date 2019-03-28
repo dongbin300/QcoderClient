@@ -25,6 +25,12 @@ namespace Qcoder
 
         private void registButton_Click(object sender, EventArgs e)
         {
+            if(!infoCheckBox.Checked)
+            {
+                MessageBox.Show("개인정보 처리방침에 동의해 주세요.");
+                return;
+            }
+
             Server server = Server.GetInstance();
             string nickname = nicknameTextBox.Text;
 
@@ -61,6 +67,11 @@ namespace Qcoder
                     registButton_Click(sender, e);
                     break;
             }
+        }
+
+        private void infoLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://qcoder.site/policy/privacy");
         }
     }
 }

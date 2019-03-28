@@ -31,6 +31,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.nicknameTextBox = new System.Windows.Forms.TextBox();
             this.registButton = new System.Windows.Forms.Button();
+            this.infoLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.infoCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -46,13 +48,13 @@
             // 
             this.nicknameTextBox.Location = new System.Drawing.Point(13, 37);
             this.nicknameTextBox.Name = "nicknameTextBox";
-            this.nicknameTextBox.Size = new System.Drawing.Size(176, 21);
+            this.nicknameTextBox.Size = new System.Drawing.Size(201, 21);
             this.nicknameTextBox.TabIndex = 1;
             // 
             // registButton
             // 
             this.registButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.registButton.Location = new System.Drawing.Point(196, 9);
+            this.registButton.Location = new System.Drawing.Point(228, 9);
             this.registButton.Name = "registButton";
             this.registButton.Size = new System.Drawing.Size(75, 49);
             this.registButton.TabIndex = 2;
@@ -60,11 +62,34 @@
             this.registButton.UseVisualStyleBackColor = true;
             this.registButton.Click += new System.EventHandler(this.registButton_Click);
             // 
+            // infoLinkLabel
+            // 
+            this.infoLinkLabel.AutoSize = true;
+            this.infoLinkLabel.Location = new System.Drawing.Point(226, 63);
+            this.infoLinkLabel.Name = "infoLinkLabel";
+            this.infoLinkLabel.Size = new System.Drawing.Size(81, 12);
+            this.infoLinkLabel.TabIndex = 4;
+            this.infoLinkLabel.TabStop = true;
+            this.infoLinkLabel.Text = "처리방침 확인";
+            this.infoLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.infoLinkLabel_LinkClicked);
+            // 
+            // infoCheckBox
+            // 
+            this.infoCheckBox.AutoSize = true;
+            this.infoCheckBox.Location = new System.Drawing.Point(14, 62);
+            this.infoCheckBox.Name = "infoCheckBox";
+            this.infoCheckBox.Size = new System.Drawing.Size(200, 16);
+            this.infoCheckBox.TabIndex = 5;
+            this.infoCheckBox.Text = "개인정보 처리방침에 동의합니다";
+            this.infoCheckBox.UseVisualStyleBackColor = true;
+            // 
             // WelcomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(278, 66);
+            this.ClientSize = new System.Drawing.Size(315, 84);
+            this.Controls.Add(this.infoCheckBox);
+            this.Controls.Add(this.infoLinkLabel);
             this.Controls.Add(this.registButton);
             this.Controls.Add(this.nicknameTextBox);
             this.Controls.Add(this.label1);
@@ -85,5 +110,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox nicknameTextBox;
         private System.Windows.Forms.Button registButton;
+        private System.Windows.Forms.LinkLabel infoLinkLabel;
+        private System.Windows.Forms.CheckBox infoCheckBox;
     }
 }

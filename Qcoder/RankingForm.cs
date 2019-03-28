@@ -65,7 +65,7 @@ namespace Qcoder
             rankingListView.Items.Clear();
             for (int i = 0; i < Math.Min(10, server.list.Count); i++)
             {
-                string[] str = new string[] { (i + 1) + "", server.rankUserID[i], server.rankScore[i] + "", server.rankTpm[i] + "", string.Format("{0:0.000}", server.rankAccuracy[i]), server.rankInputRight[i] + "", server.rankInputDone[i] + "", server.rankTimeLimit[i] + "", server.rankRegDate[i]};
+                string[] str = new string[] { (i + 1) + "", server.rankUserID[i], server.rankScore[i] + "", server.rankTpm[i] + "", string.Format("{0:0.000}%", server.rankAccuracy[i]), server.rankInputRight[i] + "", server.rankInputDone[i] + "", server.rankTimeLimit[i] + "", server.rankRegDate[i]};
                 ListViewItem lvi = new ListViewItem(str);
                 rankingListView.Items.Add(lvi);
             }

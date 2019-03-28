@@ -121,8 +121,8 @@ namespace Qcoder
                 case TypeModes.Article:
                     server.WordJSON(server.RequestDataList(server.accessToken, "article"));
                     answerTextBox.Multiline = true;
-                    answerTextBox.Size = new Size(400, 600);
-                    answerTextBox.Location = new Point(450, 10);
+                    answerTextBox.Size = new Size(500, 600);
+                    answerTextBox.Location = new Point(600, 10);
                     answerTextBox.AcceptsTab = true;
                     break;
             }
