@@ -33,6 +33,15 @@ namespace Qcoder
         public string[] language;
         public string[] type;
         public string[] content;
+        
+        public int[] rankTpm;
+        public int[] rankScore;
+        public string[] rankRegDate;
+        public int[] rankTimeLimit;
+        public string[] rankUserID;
+        public float[] rankAccuracy;
+        public int[] rankInputDone;
+        public int[] rankInputRight;
 
 
         private static Server instance = new Server();
@@ -221,6 +230,26 @@ namespace Qcoder
             return PostRequest(url, "X-Access-Token", accessToken, postData);
         }
 
+        public string LoadRecord(string typeMode, string accessToken, string criteria, string order, int time_limit)
+        {
+            string url = string.Empty;
+            string getData = string.Empty;
+            switch(typeMode)
+            {
+                case "word":
+                    url = "https://api.qcoder.site/ranking/word.jsp";
+                    break;
+                case "sentence":
+                    url = "https://api.qcoder.site/ranking/sentence.jsp";
+                    break;
+                case "article":
+                    url = "https://api.qcoder.site/ranking/article.jsp";
+                    break;
+            }
+            getData = $"criteria={criteria}&order={order}&time_limit={time_limit}";
+            return GetRequest(url, "X-Access-Token", accessToken, getData);
+        }
+
         public void AccountJSON(string JSONstring)
         {
             jo = JObject.Parse(JSONstring);
@@ -228,7 +257,7 @@ namespace Qcoder
             data = (JObject)jo["data"];
             try
             {
-                connection = (JObject)data["connection"];
+                connection = (JObject)data["connection"]; // nullable
                 accessToken = (string)connection["access_token"];
                 userIP = (string)connection["user_ip"];
                 refreshToken = (string)connection["refresh_token"];
@@ -243,7 +272,6 @@ namespace Qcoder
             }
             catch (NullReferenceException)
             {
-
             }
             success = (bool)jo["success"];
             rspCode = (int)jo["rsp_code"];
@@ -257,7 +285,7 @@ namespace Qcoder
             data = (JObject)jo["data"];
             try
             {
-                list = (JArray)data["list"];
+                list = (JArray)data["list"]; // nullable
                 language = new string[list.Count];
                 type = new string[list.Count];
                 content = new string[list.Count];
@@ -267,6 +295,52 @@ namespace Qcoder
                     language[i] = (string)thing["language"];
                     type[i] = (string)thing["type"];
                     content[i] = (string)thing["content"];
+                }
+            }
+            catch (NullReferenceException)
+            {
+                throw;
+            }
+            success = (bool)jo["success"];
+            rspCode = (int)jo["rsp_code"];
+            errorCode = (string)jo["error_code"];
+        }
+
+        public void RankingJSON(string JSONstring)
+        {
+            jo = JObject.Parse(JSONstring);
+            errorMessage = (string)jo["error_msg"];
+            data = (JObject)jo["data"];
+            try
+            {
+                list = (JArray)data["list"]; // nullable
+                rankTpm = new int[list.Count];
+                rankScore = new int[list.Count];
+                rankRegDate = new string[list.Count];
+                rankTimeLimit = new int[list.Count];
+                rankUserID = new string[list.Count];
+                rankAccuracy = new float[list.Count];
+                rankInputDone = new int[list.Count];
+                rankInputRight = new int[list.Count];
+                for (int i = 0; i < list.Count; i++)
+                {
+                    thing = (JObject)list[i];
+                    rankTpm[i] = (int)thing["tpm"];
+                    rankScore[i] = (int)thing["score"];
+                    rankRegDate[i] = (string)thing["reg_date"];
+                    rankTimeLimit[i] = (int)thing["time_limit"];
+                    rankUserID[i] = (string)thing["user_id"];
+                    rankAccuracy[i] = (float)thing["accuracy"];
+                    try
+                    {
+                        rankInputDone[i] = (int)thing["input_done"];
+                        rankInputRight[i] = (int)thing["input_right"];
+                    }
+                    catch (ArgumentNullException)
+                    {
+
+                    }
+                    
                 }
             }
             catch (NullReferenceException)

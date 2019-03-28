@@ -26,21 +26,28 @@ namespace Qcoder
             nicknameLabel.Text = nickname;
             fontSize = Properties.Settings.Default.fontSize;
 
-            /* 데이터 목록 불러오기 */
-            Server server = Server.GetInstance();
-            server.WordJSON(server.RequestDataList(server.accessToken, "word"));
-
             /* 데이터 목록에 있는 언어 콤보박스에 추가 */
             languageComboBox.Items.Add("(All)");
 
-            for (int i = 0; i < server.list.Count; i++)
+            languageComboBox.SelectedIndex = 0;
+
+            /* 데이터 목록 불러오기 */
+            Server server = Server.GetInstance();
+            try
             {
-                if (!languageComboBox.Items.Contains(server.language[i]))
+                server.WordJSON(server.RequestDataList(server.accessToken, "word")); // nullable
+                for (int i = 0; i < server.list.Count; i++)
                 {
-                    languageComboBox.Items.Add(server.language[i]);
+                    if (!languageComboBox.Items.Contains(server.language[i]))
+                    {
+                        languageComboBox.Items.Add(server.language[i]);
+                    }
                 }
             }
-            languageComboBox.SelectedIndex = 0;
+            catch (NullReferenceException)
+            {
+                return;
+            }
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -113,6 +120,12 @@ namespace Qcoder
             Program.language = languageComboBox.SelectedItem.ToString();
             Program.typeMode = TypeForm.TypeModes.Article;
             Program.Form = Program.Forms.Type;
+        }
+
+        private void rankingButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Program.Form = Program.Forms.Ranking;
         }
     }
 }

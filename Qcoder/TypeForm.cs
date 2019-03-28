@@ -44,41 +44,25 @@ namespace Qcoder
             this.language = language;
         }
 
-        private void NewWordExample()
+        private void NewExample()
         {
             Random random = new Random();
             int index = random.Next(contents.Length);
             example = contents[index];
+            if(typeMode == TypeModes.Article)
+            {
+                example = example.Replace("	", "    ");
+                example = example.Replace("\n", "\r\n");
+            }
             exampleLabel.Text = example;
             languageTypeLabel.Text = $"{languages[index]} {types[index]}";
-        }
-
-        private void NewSentenceExample()
-        {
-            Random random = new Random();
-            int index1 = random.Next(contents.Length);
-            int index2 = random.Next(contents.Length);
-            int index3 = random.Next(contents.Length);
-            example = contents[index1] + " " + contents[index2] + " " + contents[index3];
-            exampleLabel.Text = example;
-            languageTypeLabel.Text = $"{languages[index1]}";
-        }
-
-        private void NewArticleExample()
-        {
-            Random random = new Random();
-            int index1 = random.Next(contents.Length);
-            int index2 = random.Next(contents.Length);
-            int index3 = random.Next(contents.Length);
-            example = contents[index1] + " " + contents[index2] + " " + contents[index3];
-            exampleLabel.Text = example;
-            languageTypeLabel.Text = $"{languages[index1]}";
         }
 
         private void answerTextBox_TextChanged(object sender, EventArgs e)
         {
             //hitSound.Play();
             answer = answerTextBox.Text;
+            answer = answer.Replace("	", "    ");
 
             /* 실시간 글자 체크 */
             rightLetterCount = 0;
@@ -111,18 +95,8 @@ namespace Qcoder
                 }
 
                 /* 새로운 문제 */
-                switch (typeMode)
-                {
-                    case TypeModes.Word:
-                        NewWordExample();
-                        break;
-                    case TypeModes.Sentence:
-                        NewSentenceExample();
-                        break;
-                    case TypeModes.Article:
-                        NewArticleExample();
-                        break;
-                }
+                NewExample();
+
                 answerTextBox.Clear();
             }
             /* 정확도 계산 */
@@ -131,16 +105,25 @@ namespace Qcoder
 
         private void TypeForm_Load(object sender, EventArgs e)
         {
+            Server server = Server.GetInstance();
+
             /* 폼 설정 */
             switch (typeMode)
             {
                 case TypeModes.Word:
+                    server.WordJSON(server.RequestDataList(server.accessToken, "word"));
                     answerTextBox.Size = new Size(150, 22);
                     break;
                 case TypeModes.Sentence:
-                    answerTextBox.Size = new Size(450, 22);
+                    server.WordJSON(server.RequestDataList(server.accessToken, "sentence"));
+                    answerTextBox.Size = new Size(600, 22);
                     break;
                 case TypeModes.Article:
+                    server.WordJSON(server.RequestDataList(server.accessToken, "article"));
+                    answerTextBox.Multiline = true;
+                    answerTextBox.Size = new Size(400, 600);
+                    answerTextBox.Location = new Point(450, 10);
+                    answerTextBox.AcceptsTab = true;
                     break;
             }
 
@@ -150,14 +133,14 @@ namespace Qcoder
             incorrectSound = new SoundPlayer(@"incorrect.wav");
 
             /* 폰트 설정 */
-            exampleLabel.Font = new Font("굴림", MainForm.fontSize);
+            exampleLabel.Font = new Font("Consolas", MainForm.fontSize);
             languageTypeLabel.Font = new Font("굴림", MainForm.fontSize);
             elapsedTimeLabel.Font = new Font("굴림", MainForm.fontSize);
             scoreLabel.Font = new Font("굴림", MainForm.fontSize);
             progressCountLabel.Font = new Font("굴림", MainForm.fontSize);
             accuracyLabel.Font = new Font("굴림", MainForm.fontSize);
             typeSpeedLabel.Font = new Font("굴림", MainForm.fontSize);
-            answerTextBox.Font = new Font("굴림", MainForm.fontSize);
+            answerTextBox.Font = new Font("Consolas", MainForm.fontSize);
             percentLabel.Font = new Font("굴림", MainForm.fontSize);
             tpmLabel.Font = new Font("굴림", MainForm.fontSize);
 
@@ -172,8 +155,6 @@ namespace Qcoder
             score = 0;
 
             /* 선택한 언어만 리스트에 저장 */
-            Server server = Server.GetInstance();
-
             languages = new string[server.list.Count];
             types = new string[server.list.Count];
             contents = new string[server.list.Count];
@@ -200,18 +181,7 @@ namespace Qcoder
             }
 
             /* 첫 문제 생성 */
-            switch (typeMode)
-            {
-                case TypeModes.Word:
-                    NewWordExample();
-                    break;
-                case TypeModes.Sentence:
-                    NewSentenceExample();
-                    break;
-                case TypeModes.Article:
-                    NewArticleExample();
-                    break;
-            }
+            NewExample();
 
             /* 타이머 생성 */
             mainTimer.Start();
@@ -240,8 +210,15 @@ namespace Qcoder
                 Server server = Server.GetInstance();
 
                 /* 랭킹 등록 */
-                server.SaveRecord(typeMode, server.accessToken, progressStage, completionStage, accuracy, TPM, score);
-
+                try
+                {
+                    server.SaveRecord(typeMode, server.accessToken, progressStage, completionStage, accuracy, TPM, score);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show($"기록 저장에 실패하였습니다. ({ex.Message})");
+                }
+                
                 /* 결과 창 */
                 switch(typeMode)
                 {

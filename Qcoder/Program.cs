@@ -13,7 +13,7 @@ namespace Qcoder
         /// The main entry point for the application.
         /// </summary>
 
-        public enum Forms { Exit, Login, Welcome, Main, Type, Game, Unregist, Settings };
+        public enum Forms { Exit, Login, Welcome, Main, Type, Game, Unregist, Settings, Ranking };
         public static Forms Form = Forms.Login;
         public static string id;
         public static string password;
@@ -74,6 +74,9 @@ namespace Qcoder
                         break;
                     case Forms.Settings:
                         Application.Run(new SettingsForm());
+                        break;
+                    case Forms.Ranking:
+                        Application.Run(new RankingForm());
                         break;
                 }
             }
