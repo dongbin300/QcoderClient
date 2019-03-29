@@ -70,10 +70,22 @@ namespace Qcoder
                 if (answer[i] == example[i])
                     rightLetterCount++;
 
-            /* 줄바꿈 시 자동으로 탭 추가 */
             if (typeMode == TypeModes.Article)
-                if (answer.Length + 3 <= example.Length && example[answer.Length] == ' ' && example[answer.Length + 1] == ' ' && example[answer.Length + 2] == ' ' && example[answer.Length + 3] == ' ')
-                    answerTextBox.AppendText("	");
+            {
+                string[] exampleLine = new string[100];
+                string[] answerLine = new string[100];
+                exampleLine = example.Split('\r');
+                answerLine = answer.Split('\r');
+
+                int currentLine = answerLine.Length - 1;
+
+                if (exampleLine[currentLine].Length > 1 && exampleLine[currentLine].Length > answerLine[currentLine].Length)
+                    if (exampleLine[currentLine][answerLine[currentLine].Length] == ' ')
+                        if (exampleLine[currentLine][answerLine[currentLine].Length + 1] == ' ' &&
+                        exampleLine[currentLine][answerLine[currentLine].Length + 2] == ' ' &&
+                        exampleLine[currentLine][answerLine[currentLine].Length + 3] == ' ')
+                            answerTextBox.AppendText("    ");
+            }
 
             if (answer.Length > 0 && answer.Length == example.Length)
             {
