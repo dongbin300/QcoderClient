@@ -69,12 +69,10 @@ namespace Qcoder
                     MessageBox.Show("중복된 로그인 요청입니다.");
                 }
                 /* 탈퇴된 아이디일 경우 */
-                /*
-                else if(server.state == "UNREGISTERED")
+                else if (server.errorCode == "115")
                 {
                     MessageBox.Show("탈퇴된 아이디입니다.");
                 }
-                */
                 /* 아이디와 비밀번호 모두 일치하는 경우 */
                 else
                 {

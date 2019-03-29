@@ -59,15 +59,21 @@ namespace Qcoder
 
         private void ListViewReload()
         {
-            Server server = Server.GetInstance();
-            server.RankingJSON(server.LoadRecord(typeMode.serverString[typeMode.no], server.accessToken, criteria.serverString[criteria.no], order.serverString[order.no], 0));
-
             rankingListView.Items.Clear();
-            for (int i = 0; i < Math.Min(10, server.list.Count); i++)
+
+            Server server = Server.GetInstance();
+            try
             {
-                string[] str = new string[] { (i + 1) + "", server.rankUserID[i], server.rankScore[i] + "", server.rankTpm[i] + "", string.Format("{0:0.000}%", server.rankAccuracy[i]), server.rankInputRight[i] + "", server.rankInputDone[i] + "", server.rankTimeLimit[i] + "", server.rankRegDate[i]};
-                ListViewItem lvi = new ListViewItem(str);
-                rankingListView.Items.Add(lvi);
+                server.RankingJSON(server.LoadRecord(typeMode.serverString[typeMode.no], server.accessToken, criteria.serverString[criteria.no], order.serverString[order.no], 0));
+                for (int i = 0; i < Math.Min(10, server.list.Count); i++)
+                {
+                    string[] str = new string[] { (i + 1) + "", server.rankUserID[i], server.rankScore[i] + "", server.rankTpm[i] + "", string.Format("{0:0.000}%", server.rankAccuracy[i]), server.rankInputRight[i] + "", server.rankInputDone[i] + "", server.rankTimeLimit[i] + "", server.rankRegDate[i] };
+                    ListViewItem lvi = new ListViewItem(str);
+                    rankingListView.Items.Add(lvi);
+                }
+            }
+            catch (NullReferenceException)
+            {
             }
         }
 

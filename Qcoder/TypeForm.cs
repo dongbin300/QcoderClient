@@ -71,8 +71,9 @@ namespace Qcoder
                     rightLetterCount++;
 
             /* 줄바꿈 시 자동으로 탭 추가 */
-            if (example[answer.Length] == ' ' && example[answer.Length + 1] == ' ' && example[answer.Length + 2] == ' ' && example[answer.Length + 3] == ' ')
-                answerTextBox.AppendText("	");
+            if(typeMode == TypeModes.Article)
+                if (example[answer.Length] == ' ' && example[answer.Length + 1] == ' ' && example[answer.Length + 2] == ' ' && example[answer.Length + 3] == ' ')
+                    answerTextBox.AppendText("	");
 
             if (answer.Length > 0 && answer.Length == example.Length)
             {
