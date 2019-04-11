@@ -125,18 +125,48 @@ namespace Qcoder
             {
                 case TypeModes.Word:
                     server.WordJSON(server.RequestDataList(server.accessToken, "word"));
+                    StartPosition = FormStartPosition.CenterScreen;
+                    Size = new Size(350, 180);
                     answerTextBox.Size = new Size(150, 22);
+                    languageTypeLabel.Location = new Point(9, 123);
+                    elapsedTimeLabel.Location = new Point(247, 123);
+                    accuracyLabel.Location = new Point(247, 18);
+                    scoreLabel.Location = new Point(247, 48);
+                    typeSpeedLabel.Location = new Point(247, 78);
+                    percentLabel.Location = new Point(298, 18);
+                    tpmLabel.Location = new Point(291, 78);
+                    progressCountLabel.Location = new Point(161, 18);
                     break;
                 case TypeModes.Sentence:
                     server.WordJSON(server.RequestDataList(server.accessToken, "sentence"));
+                    StartPosition = FormStartPosition.CenterScreen;
+                    Size = new Size(800, 180);
                     answerTextBox.Size = new Size(600, 22);
+                    languageTypeLabel.Location = new Point(9, 123);
+                    elapsedTimeLabel.Location = new Point(697, 123);
+                    accuracyLabel.Location = new Point(697, 18);
+                    scoreLabel.Location = new Point(697, 48);
+                    typeSpeedLabel.Location = new Point(697, 78);
+                    percentLabel.Location = new Point(748, 18);
+                    tpmLabel.Location = new Point(741, 78);
+                    progressCountLabel.Location = new Point(611, 18);
                     break;
                 case TypeModes.Article:
                     server.WordJSON(server.RequestDataList(server.accessToken, "article"));
+                    StartPosition = FormStartPosition.CenterScreen;
+                    Size = new Size(1280, 720);
                     answerTextBox.Multiline = true;
                     answerTextBox.Size = new Size(500, 600);
                     answerTextBox.Location = new Point(600, 10);
                     answerTextBox.AcceptsTab = true;
+                    languageTypeLabel.Location = new Point(9, 676);
+                    elapsedTimeLabel.Location = new Point(1204, 676);
+                    accuracyLabel.Location = new Point(1192, 18);
+                    scoreLabel.Location = new Point(1204, 48);
+                    typeSpeedLabel.Location = new Point(1204, 78);
+                    percentLabel.Location = new Point(1243, 18);
+                    tpmLabel.Location = new Point(1245, 78);
+                    progressCountLabel.Location = new Point(1106, 18);
                     break;
             }
 
