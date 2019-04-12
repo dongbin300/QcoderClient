@@ -80,7 +80,7 @@ namespace Qcoder
                 int currentLine = answerLine.Length - 1;
 
                 if (exampleLine[currentLine].Length > 1 && exampleLine[currentLine].Length > answerLine[currentLine].Length)
-                    if (exampleLine[currentLine][answerLine[currentLine].Length] == ' ')
+                    if (exampleLine[currentLine][answerLine[currentLine].Length] == ' ' && exampleLine[currentLine].Length >= 3)
                         if (exampleLine[currentLine][answerLine[currentLine].Length + 1] == ' ' &&
                         exampleLine[currentLine][answerLine[currentLine].Length + 2] == ' ' &&
                         exampleLine[currentLine][answerLine[currentLine].Length + 3] == ' ')
@@ -136,6 +136,7 @@ namespace Qcoder
                     percentLabel.Location = new Point(298, 18);
                     tpmLabel.Location = new Point(291, 78);
                     progressCountLabel.Location = new Point(161, 18);
+                    ActiveControl = answerTextBox;
                     break;
                 case TypeModes.Sentence:
                     server.WordJSON(server.RequestDataList(server.accessToken, "sentence"));
@@ -150,6 +151,7 @@ namespace Qcoder
                     percentLabel.Location = new Point(748, 18);
                     tpmLabel.Location = new Point(741, 78);
                     progressCountLabel.Location = new Point(611, 18);
+                    ActiveControl = answerTextBox;
                     break;
                 case TypeModes.Article:
                     server.WordJSON(server.RequestDataList(server.accessToken, "article"));
@@ -167,6 +169,7 @@ namespace Qcoder
                     percentLabel.Location = new Point(1243, 18);
                     tpmLabel.Location = new Point(1245, 78);
                     progressCountLabel.Location = new Point(1106, 18);
+                    ActiveControl = answerTextBox;
                     break;
             }
 

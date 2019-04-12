@@ -35,13 +35,13 @@
             this.rank = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.score = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cancelButton = new System.Windows.Forms.Button();
             this.tpm = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.accuracy = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.completion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.timeLimit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.regDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // typeModeButton
@@ -62,7 +62,7 @@
             this.criteriaButton.Name = "criteriaButton";
             this.criteriaButton.Size = new System.Drawing.Size(85, 23);
             this.criteriaButton.TabIndex = 1;
-            this.criteriaButton.Text = "타자 속도";
+            this.criteriaButton.Text = "TPM";
             this.criteriaButton.UseVisualStyleBackColor = true;
             this.criteriaButton.Click += new System.EventHandler(this.criteriaButton_Click);
             // 
@@ -109,17 +109,6 @@
             // 
             this.score.Text = "점수";
             // 
-            // cancelButton
-            // 
-            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Location = new System.Drawing.Point(440, 277);
-            this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(73, 23);
-            this.cancelButton.TabIndex = 4;
-            this.cancelButton.Text = "취소";
-            this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
-            // 
             // tpm
             // 
             this.tpm.Text = "TPM";
@@ -148,6 +137,17 @@
             // 
             this.regDate.Text = "등록";
             this.regDate.Width = 120;
+            // 
+            // cancelButton
+            // 
+            this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cancelButton.Location = new System.Drawing.Point(440, 277);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(73, 23);
+            this.cancelButton.TabIndex = 4;
+            this.cancelButton.Text = "취소";
+            this.cancelButton.UseVisualStyleBackColor = true;
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // RankingForm
             // 
