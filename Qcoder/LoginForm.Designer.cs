@@ -37,6 +37,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.exitButton = new System.Windows.Forms.Button();
             this.internetConnectTimer = new System.Windows.Forms.Timer(this.components);
+            this.versionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -107,11 +108,21 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(1, 107);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(11, 12);
+            this.versionLabel.TabIndex = 5;
+            this.versionLabel.Text = "v";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(311, 122);
+            this.Controls.Add(this.versionLabel);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.loginButton);
@@ -142,6 +153,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Timer internetConnectTimer;
+        private System.Windows.Forms.Label versionLabel;
     }
 }
 

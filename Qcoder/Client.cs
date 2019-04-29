@@ -9,6 +9,7 @@ namespace Qcoder
 {
     public class Client
     {
+        public static string version = "v1.23.0";
         public Client()
         {
 

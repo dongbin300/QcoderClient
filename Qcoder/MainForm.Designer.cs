@@ -43,10 +43,10 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.rankingButton = new System.Windows.Forms.Button();
             this.ㅊ = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.rankingButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -73,6 +73,7 @@
             this.wordButton.FlatAppearance.BorderSize = 2;
             this.wordButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.wordButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.wordButton.ForeColor = System.Drawing.Color.White;
             this.wordButton.Location = new System.Drawing.Point(11, 44);
             this.wordButton.Name = "wordButton";
             this.wordButton.Size = new System.Drawing.Size(200, 80);
@@ -87,6 +88,7 @@
             this.sentenceButton.FlatAppearance.BorderSize = 2;
             this.sentenceButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.sentenceButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.sentenceButton.ForeColor = System.Drawing.Color.White;
             this.sentenceButton.Location = new System.Drawing.Point(232, 44);
             this.sentenceButton.Name = "sentenceButton";
             this.sentenceButton.Size = new System.Drawing.Size(200, 80);
@@ -101,6 +103,7 @@
             this.articleButton.FlatAppearance.BorderSize = 2;
             this.articleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.articleButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.articleButton.ForeColor = System.Drawing.Color.White;
             this.articleButton.Location = new System.Drawing.Point(11, 144);
             this.articleButton.Name = "articleButton";
             this.articleButton.Size = new System.Drawing.Size(200, 80);
@@ -115,6 +118,7 @@
             this.gameButton.FlatAppearance.BorderSize = 2;
             this.gameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gameButton.Font = new System.Drawing.Font("맑은 고딕", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.gameButton.ForeColor = System.Drawing.Color.White;
             this.gameButton.Location = new System.Drawing.Point(232, 144);
             this.gameButton.Name = "gameButton";
             this.gameButton.Size = new System.Drawing.Size(200, 80);
@@ -129,7 +133,7 @@
             this.logoutButton.FlatAppearance.BorderSize = 0;
             this.logoutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutButton.ForeColor = System.Drawing.Color.White;
-            this.logoutButton.Location = new System.Drawing.Point(110, 32);
+            this.logoutButton.Location = new System.Drawing.Point(110, 34);
             this.logoutButton.Name = "logoutButton";
             this.logoutButton.Size = new System.Drawing.Size(70, 22);
             this.logoutButton.TabIndex = 5;
@@ -142,7 +146,7 @@
             this.unregistButton.FlatAppearance.BorderSize = 0;
             this.unregistButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unregistButton.ForeColor = System.Drawing.Color.DeepPink;
-            this.unregistButton.Location = new System.Drawing.Point(186, 32);
+            this.unregistButton.Location = new System.Drawing.Point(186, 34);
             this.unregistButton.Name = "unregistButton";
             this.unregistButton.Size = new System.Drawing.Size(39, 22);
             this.unregistButton.TabIndex = 7;
@@ -162,7 +166,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.pictureBox3);
@@ -232,15 +236,28 @@
             this.panel2.Controls.Add(this.nicknameLabel);
             this.panel2.Location = new System.Drawing.Point(218, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(228, 57);
+            this.panel2.Size = new System.Drawing.Size(228, 60);
             this.panel2.TabIndex = 10;
+            // 
+            // rankingButton
+            // 
+            this.rankingButton.FlatAppearance.BorderSize = 0;
+            this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rankingButton.ForeColor = System.Drawing.Color.White;
+            this.rankingButton.Location = new System.Drawing.Point(59, 34);
+            this.rankingButton.Name = "rankingButton";
+            this.rankingButton.Size = new System.Drawing.Size(53, 22);
+            this.rankingButton.TabIndex = 9;
+            this.rankingButton.Text = "랭킹";
+            this.rankingButton.UseVisualStyleBackColor = true;
+            this.rankingButton.Click += new System.EventHandler(this.rankingButton_Click);
             // 
             // ㅊ
             // 
             this.ㅊ.FlatAppearance.BorderSize = 0;
             this.ㅊ.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ㅊ.ForeColor = System.Drawing.Color.White;
-            this.ㅊ.Location = new System.Drawing.Point(12, 32);
+            this.ㅊ.Location = new System.Drawing.Point(12, 34);
             this.ㅊ.Name = "ㅊ";
             this.ㅊ.Size = new System.Drawing.Size(53, 22);
             this.ㅊ.TabIndex = 8;
@@ -268,23 +285,11 @@
             this.pictureBox6.TabIndex = 11;
             this.pictureBox6.TabStop = false;
             // 
-            // rankingButton
-            // 
-            this.rankingButton.FlatAppearance.BorderSize = 0;
-            this.rankingButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rankingButton.ForeColor = System.Drawing.Color.White;
-            this.rankingButton.Location = new System.Drawing.Point(59, 32);
-            this.rankingButton.Name = "rankingButton";
-            this.rankingButton.Size = new System.Drawing.Size(53, 22);
-            this.rankingButton.TabIndex = 9;
-            this.rankingButton.Text = "랭킹";
-            this.rankingButton.UseVisualStyleBackColor = true;
-            this.rankingButton.Click += new System.EventHandler(this.rankingButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.AliceBlue;
             this.ClientSize = new System.Drawing.Size(445, 295);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.panel2);

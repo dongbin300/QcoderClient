@@ -21,6 +21,7 @@ namespace Qcoder
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
+            versionLabel.Text = Client.version;
         }
 
         private void loginButton_Click(object sender, EventArgs e)
