@@ -25,9 +25,16 @@ namespace Qcoder
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            Properties.Settings.Default["fontSize"] = int.Parse(fontSizeComboBox.SelectedItem.ToString());
-            Properties.Settings.Default.Save();
-            Close();
+            try
+            {
+                Properties.Settings.Default["fontSize"] = int.Parse(fontSizeComboBox.SelectedItem.ToString());
+                Properties.Settings.Default.Save();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void SettingsForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -37,13 +44,20 @@ namespace Qcoder
 
         private void SettingsForm_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < FontSizes.Length; i++)
+            try
             {
-                fontSizeComboBox.Items.Add(FontSizes[i]);
-                if (fontSizeComboBox.Items[i].ToString() == "" + MainForm.fontSize)
+                for (int i = 0; i < FontSizes.Length; i++)
                 {
-                    fontSizeComboBox.SelectedIndex = i;
+                    fontSizeComboBox.Items.Add(FontSizes[i]);
+                    if (fontSizeComboBox.Items[i].ToString() == "" + MainForm.fontSize)
+                    {
+                        fontSizeComboBox.SelectedIndex = i;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
             }
         }
     }

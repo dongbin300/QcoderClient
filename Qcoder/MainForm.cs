@@ -23,18 +23,18 @@ namespace Qcoder
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            nicknameLabel.Text = nickname;
-            fontSize = Properties.Settings.Default.fontSize;
-
-            /* 데이터 목록에 있는 언어 콤보박스에 추가 */
-            languageComboBox.Items.Add("(All)");
-
-            languageComboBox.SelectedIndex = 0;
-
-            /* 데이터 목록 불러오기 */
-            Server server = Server.GetInstance();
             try
             {
+                nicknameLabel.Text = nickname;
+                fontSize = Properties.Settings.Default.fontSize;
+
+                /* 데이터 목록에 있는 언어 콤보박스에 추가 */
+                languageComboBox.Items.Add("(All)");
+
+                languageComboBox.SelectedIndex = 0;
+
+                /* 데이터 목록 불러오기 */
+                Server server = Server.GetInstance();
                 server.WordJSON(server.RequestDataList(server.accessToken, "word")); // nullable
                 for (int i = 0; i < server.list.Count; i++)
                 {
@@ -44,9 +44,9 @@ namespace Qcoder
                     }
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception ex)
             {
-                return;
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
             }
         }
 
@@ -57,12 +57,19 @@ namespace Qcoder
 
         private void logoutButton_Click(object sender, EventArgs e)
         {
-            /* 로그아웃 */
-            Server server = Server.GetInstance();
-            server.Logout(server.accessToken);
+            try
+            {
+                /* 로그아웃 */
+                Server server = Server.GetInstance();
+                server.Logout(server.accessToken);
 
-            Close();
-            Program.Form = Program.Forms.Login;
+                Close();
+                Program.Form = Program.Forms.Login;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -81,17 +88,31 @@ namespace Qcoder
 
         private void wordButton_Click(object sender, EventArgs e)
         {
-            Close();
-            Program.language = languageComboBox.SelectedItem.ToString();
-            Program.typeMode = TypeForm.TypeModes.Word;
-            Program.Form = Program.Forms.Type;
+            try
+            {
+                Close();
+                Program.language = languageComboBox.SelectedItem.ToString();
+                Program.typeMode = TypeForm.TypeModes.Word;
+                Program.Form = Program.Forms.Type;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void gameButton_Click(object sender, EventArgs e)
         {
-            Close();
-            Program.language = languageComboBox.SelectedItem.ToString();
-            Program.Form = Program.Forms.Game;
+            try
+            {
+                Close();
+                Program.language = languageComboBox.SelectedItem.ToString();
+                Program.Form = Program.Forms.Game;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void unregistButton_Click(object sender, EventArgs e)
@@ -108,18 +129,32 @@ namespace Qcoder
 
         private void sentenceButton_Click(object sender, EventArgs e)
         {
-            Close();
-            Program.language = languageComboBox.SelectedItem.ToString();
-            Program.typeMode = TypeForm.TypeModes.Sentence;
-            Program.Form = Program.Forms.Type;
+            try
+            {
+                Close();
+                Program.language = languageComboBox.SelectedItem.ToString();
+                Program.typeMode = TypeForm.TypeModes.Sentence;
+                Program.Form = Program.Forms.Type;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void articleButton_Click(object sender, EventArgs e)
         {
-            Close();
-            Program.language = languageComboBox.SelectedItem.ToString();
-            Program.typeMode = TypeForm.TypeModes.Article;
-            Program.Form = Program.Forms.Type;
+            try
+            {
+                Close();
+                Program.language = languageComboBox.SelectedItem.ToString();
+                Program.typeMode = TypeForm.TypeModes.Article;
+                Program.Form = Program.Forms.Type;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void rankingButton_Click(object sender, EventArgs e)

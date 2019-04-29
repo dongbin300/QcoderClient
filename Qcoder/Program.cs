@@ -27,65 +27,79 @@ namespace Qcoder
         [STAThread]
         static void Main()
         {
-            reissueTokenTimer = new System.Timers.Timer();
-            reissueTokenTimer.Elapsed += new ElapsedEventHandler(reissueTokenTimer_Elapsed);
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            while (true)
+            try
             {
-                if (Form == Forms.Exit)
+                reissueTokenTimer = new System.Timers.Timer();
+                reissueTokenTimer.Elapsed += new ElapsedEventHandler(reissueTokenTimer_Elapsed);
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                while (true)
                 {
-                    Server server = Server.GetInstance();
-                    if (server.accessToken != null)
+                    if (Form == Forms.Exit)
                     {
-                        server.Logout(server.accessToken);
-                    }
-                    break;
-                }
-                switch (Form)
-                {
-                    case Forms.Login:
-                        Application.Run(new LoginForm());
-                        break;
-                    case Forms.Welcome:
-                        Application.Run(new WelcomeForm(id, password));
-                        break;
-                    case Forms.Main:
-                        if (!reissueTokenTimer.Enabled)
+                        Server server = Server.GetInstance();
+                        if (server.accessToken != null)
                         {
-                            Server server = Server.GetInstance();
-                            DateTime expDate = DateTime.ParseExact(server.expDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                            DateTime updDate = DateTime.ParseExact(server.updDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                            TimeSpan diff = expDate - updDate - new TimeSpan(0, 5, 0);
-                            reissueTokenTimer.Interval = (diff.Days * 86400 + diff.Hours * 3600 + diff.Minutes * 60 + diff.Seconds) * 1000;
-                            reissueTokenTimer.Start();
+                            server.Logout(server.accessToken);
                         }
-                        Application.Run(new MainForm(nickname));
                         break;
-                    case Forms.Type:
-                        Application.Run(new TypeForm(typeMode, language));
-                        break;
-                    case Forms.Game:
-                        Application.Run(new GameForm(language));
-                        break;
-                    case Forms.Unregist:
-                        Application.Run(new UnregistForm());
-                        break;
-                    case Forms.Settings:
-                        Application.Run(new SettingsForm());
-                        break;
-                    case Forms.Ranking:
-                        Application.Run(new RankingForm());
-                        break;
+                    }
+                    switch (Form)
+                    {
+                        case Forms.Login:
+                            Application.Run(new LoginForm());
+                            break;
+                        case Forms.Welcome:
+                            Application.Run(new WelcomeForm(id, password));
+                            break;
+                        case Forms.Main:
+                            if (!reissueTokenTimer.Enabled)
+                            {
+                                Server server = Server.GetInstance();
+                                DateTime expDate = DateTime.ParseExact(server.expDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                                DateTime updDate = DateTime.ParseExact(server.updDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                                TimeSpan diff = expDate - updDate - new TimeSpan(0, 5, 0);
+                                reissueTokenTimer.Interval = (diff.Days * 86400 + diff.Hours * 3600 + diff.Minutes * 60 + diff.Seconds) * 1000;
+                                reissueTokenTimer.Start();
+                            }
+                            Application.Run(new MainForm(nickname));
+                            break;
+                        case Forms.Type:
+                            Application.Run(new TypeForm(typeMode, language));
+                            break;
+                        case Forms.Game:
+                            Application.Run(new GameForm(language));
+                            break;
+                        case Forms.Unregist:
+                            Application.Run(new UnregistForm());
+                            break;
+                        case Forms.Settings:
+                            Application.Run(new SettingsForm());
+                            break;
+                        case Forms.Ranking:
+                            Application.Run(new RankingForm());
+                            break;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
             }
         }
 
         static void reissueTokenTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Server server = Server.GetInstance();
-            server.ReissueToken(server.accessToken, server.refreshToken);
+            try
+            {
+                Server server = Server.GetInstance();
+                server.ReissueToken(server.accessToken, server.refreshToken);
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
     }
 }

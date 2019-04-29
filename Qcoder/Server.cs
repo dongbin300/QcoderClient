@@ -33,7 +33,7 @@ namespace Qcoder
         public string[] language;
         public string[] type;
         public string[] content;
-        
+
         public int[] rankTpm;
         public int[] rankScore;
         public string[] rankRegDate;
@@ -55,117 +55,173 @@ namespace Qcoder
 
         public string GetRequest(string url)
         {
-            WebRequest request = WebRequest.Create(url);
-            request.Credentials = CredentialCache.DefaultCredentials;
-            WebResponse response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                request.Credentials = CredentialCache.DefaultCredentials;
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string GetRequest(string url, string getData)
         {
-            WebRequest request = WebRequest.Create($"{url}?{getData}");
-            request.Method = "GET";
-            WebResponse response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create($"{url}?{getData}");
+                request.Method = "GET";
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string GetRequest(string url, string header, string value)
         {
-            WebRequest request = WebRequest.Create(url);
-            request.Method = "GET";
-            request.Headers[header] = value;
-            WebResponse response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "GET";
+                request.Headers[header] = value;
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string GetRequest(string url, string header, string value, string getData)
         {
-            WebRequest request = WebRequest.Create($"{url}?{getData}");
-            request.Method = "GET";
-            request.Headers[header] = value;
-            WebResponse response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create($"{url}?{getData}");
+                request.Method = "GET";
+                request.Headers[header] = value;
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string GetRequest(string url, string header, string value, string header2, string value2)
         {
-            WebRequest request = WebRequest.Create(url);
-            request.Method = "GET";
-            request.Headers[header] = value;
-            request.Headers[header2] = value2;
-            WebResponse response = request.GetResponse();
-            Stream dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "GET";
+                request.Headers[header] = value;
+                request.Headers[header2] = value2;
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string PostRequest(string url, string postData)
         {
-            WebRequest request = WebRequest.Create(url);
-            request.Method = "POST";
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "POST";
+                byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string PostRequest(string url, string header, string value, string postData)
         {
-            WebRequest request = WebRequest.Create(url);
-            request.Method = "POST";
-            request.Headers[header] = value;
-            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.ContentLength = byteArray.Length;
-            Stream dataStream = request.GetRequestStream();
-            dataStream.Write(byteArray, 0, byteArray.Length);
-            dataStream.Close();
-            WebResponse response = request.GetResponse();
-            dataStream = response.GetResponseStream();
-            StreamReader reader = new StreamReader(dataStream);
-            string responseFromServer = reader.ReadToEnd();
-            reader.Close();
-            dataStream.Close();
-            response.Close();
-            return responseFromServer;
+            try
+            {
+                WebRequest request = WebRequest.Create(url);
+                request.Method = "POST";
+                request.Headers[header] = value;
+                byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.ContentLength = byteArray.Length;
+                Stream dataStream = request.GetRequestStream();
+                dataStream.Write(byteArray, 0, byteArray.Length);
+                dataStream.Close();
+                WebResponse response = request.GetResponse();
+                dataStream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(dataStream);
+                string responseFromServer = reader.ReadToEnd();
+                reader.Close();
+                dataStream.Close();
+                response.Close();
+                return responseFromServer;
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+                return "";
+            }
         }
 
         public string Regist(string id, string password, string nickname)
@@ -212,7 +268,7 @@ namespace Qcoder
         {
             string url = string.Empty;
             string postData = string.Empty;
-            switch(typeMode)
+            switch (typeMode)
             {
                 case TypeForm.TypeModes.Word:
                     url = "https://api.qcoder.site/record/word.jsp";
@@ -234,7 +290,7 @@ namespace Qcoder
         {
             string url = string.Empty;
             string getData = string.Empty;
-            switch(typeMode)
+            switch (typeMode)
             {
                 case "word":
                     url = "https://api.qcoder.site/ranking/word.jsp";
@@ -340,7 +396,7 @@ namespace Qcoder
                     {
 
                     }
-                    
+
                 }
             }
             catch (NullReferenceException)

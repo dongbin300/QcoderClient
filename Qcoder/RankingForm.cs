@@ -59,11 +59,10 @@ namespace Qcoder
 
         private void ListViewReload()
         {
-            rankingListView.Items.Clear();
-
-            Server server = Server.GetInstance();
             try
             {
+                rankingListView.Items.Clear();
+                Server server = Server.GetInstance();
                 server.RankingJSON(server.LoadRecord(typeMode.serverString[typeMode.no], server.accessToken, criteria.serverString[criteria.no], order.serverString[order.no], 0));
                 for (int i = 0; i < Math.Min(10, server.list.Count); i++)
                 {
@@ -72,36 +71,58 @@ namespace Qcoder
                     rankingListView.Items.Add(lvi);
                 }
             }
-            catch (NullReferenceException)
+            catch (Exception ex)
             {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
             }
         }
 
         private void typeModeButton_Click(object sender, EventArgs e)
         {
-            if (++typeMode.no == typeMode.serverString.Length)
-                typeMode.no = 0;
-            typeModeButton.Text = typeMode.buttonString[typeMode.no];
+            try
+            {
+                if (++typeMode.no == typeMode.serverString.Length)
+                    typeMode.no = 0;
+                typeModeButton.Text = typeMode.buttonString[typeMode.no];
 
-            ListViewReload();
+                ListViewReload();
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void criteriaButton_Click(object sender, EventArgs e)
         {
-            if (++criteria.no == criteria.serverString.Length)
-                criteria.no = 0;
-            criteriaButton.Text = criteria.buttonString[criteria.no];
+            try
+            {
+                if (++criteria.no == criteria.serverString.Length)
+                    criteria.no = 0;
+                criteriaButton.Text = criteria.buttonString[criteria.no];
 
-            ListViewReload();
+                ListViewReload();
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
 
         private void orderButton_Click(object sender, EventArgs e)
         {
-            if (++order.no == order.serverString.Length)
-                order.no = 0;
-            orderButton.Text = order.buttonString[order.no];
+            try
+            {
+                if (++order.no == order.serverString.Length)
+                    order.no = 0;
+                orderButton.Text = order.buttonString[order.no];
 
-            ListViewReload();
+                ListViewReload();
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
+            }
         }
     }
 }

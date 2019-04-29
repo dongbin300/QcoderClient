@@ -25,32 +25,39 @@ namespace Qcoder
 
         private void registButton_Click(object sender, EventArgs e)
         {
-            if(!infoCheckBox.Checked)
+            try
             {
-                MessageBox.Show("개인정보 처리방침에 동의해 주세요.");
-                return;
+                if (!infoCheckBox.Checked)
+                {
+                    MessageBox.Show("개인정보 처리방침에 동의해 주세요.");
+                    return;
+                }
+
+                Server server = Server.GetInstance();
+                string nickname = nicknameTextBox.Text;
+
+                Regex nicknameRegex = new Regex(@"^[!-~가-힣]{2,20}$");
+                Match nicknameMatch = nicknameRegex.Match(nickname);
+
+                if (nicknameMatch.Success)
+                {
+                    /* 계정 생성 후 로그인 */
+                    server.Regist(id, password, nickname);
+                    string loginString = server.Login(id, password);
+                    server.AccountJSON(loginString);
+
+                    Close();
+                    Program.Form = Program.Forms.Main;
+                    Program.nickname = nickname;
+                }
+                else
+                {
+                    MessageBox.Show("2~20자의 아스키 문자, 한글만 가능합니다.");
+                }
             }
-
-            Server server = Server.GetInstance();
-            string nickname = nicknameTextBox.Text;
-
-            Regex nicknameRegex = new Regex(@"^[!-~가-힣]{2,20}$");
-            Match nicknameMatch = nicknameRegex.Match(nickname);
-
-            if(nicknameMatch.Success)
+            catch (Exception ex)
             {
-                /* 계정 생성 후 로그인 */
-                server.Regist(id, password, nickname);
-                string loginString = server.Login(id, password);
-                server.AccountJSON(loginString);
-
-                Close();
-                Program.Form = Program.Forms.Main;
-                Program.nickname = nickname;
-            }
-            else
-            {
-                MessageBox.Show("2~20자의 아스키 문자, 한글만 가능합니다.");
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
             }
         }
 

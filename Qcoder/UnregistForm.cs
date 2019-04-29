@@ -19,15 +19,22 @@ namespace Qcoder
 
         private void unregistButton_Click(object sender, EventArgs e)
         {
-            if(MessageBox.Show("탈퇴 처리 후 계정 복구는 불가능합니다.\n정말로 탈퇴하시겠습니까?","",MessageBoxButtons.YesNo)==DialogResult.Yes)
+            try
             {
-                string reason = reasonTextBox.Text;
+                if (MessageBox.Show("탈퇴 처리 후 계정 복구는 불가능합니다.\n정말로 탈퇴하시겠습니까?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    string reason = reasonTextBox.Text;
 
-                Server server = Server.GetInstance();
-                server.Unregist(server.accessToken, server.userID, reason);
+                    Server server = Server.GetInstance();
+                    server.Unregist(server.accessToken, server.userID, reason);
 
-                Close();
-                Program.Form = Program.Forms.Login;
+                    Close();
+                    Program.Form = Program.Forms.Login;
+                }
+            }
+            catch (Exception ex)
+            {
+                Client.WriteErrorLog(Client.GenerateErrorMessage(new System.Diagnostics.StackTrace(true), ex));
             }
         }
 
